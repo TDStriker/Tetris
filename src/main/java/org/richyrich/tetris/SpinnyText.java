@@ -34,6 +34,8 @@ public class SpinnyText {
     public void update(int elapsedTimeMillis, String str) {
         theta += (2 * Math.PI * rotSpeed) * (elapsedTimeMillis / 1000f);
         this.str = str;
+
+        screenSaver(elapsedTimeMillis,dim);
     }
 
     public void render(Graphics2D g){
