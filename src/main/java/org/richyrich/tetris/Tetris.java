@@ -1,18 +1,24 @@
 package org.richyrich.tetris;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Tetris extends JFrame {
     final static int BOARD_WIDTH = 10;
     final static int BOARD_HEIGHT = 20;
 
+    BufferedImage bimg;
+
     final Dimension dim = new Dimension(1000, 600);
     final Canvas renderySpot;
 
     final KeyboardListener keyInput = new KeyboardListener();
-    final SpinnyText brian = new SpinnyText(dim.height/2, dim.width/2, 10, 0, new Color((int)(Math.random()*128),(int)(Math.random()*128),(int)(Math.random()*128)),
-        new Font("Verdana", (Font.ITALIC), 20));
+    final SpinnyText brian = new SpinnyText(dim.height/2, dim.width/2, 1, 0, new Color((int)(Math.random()*128),(int)(Math.random()*128),(int)(Math.random()*128)),
+        new Font("Verdana", (Font.ITALIC), 20), dim);
     //Brian Fact! Brian is the Brian of the operation. Respect him.
 
 //    float theta = 0;
@@ -21,9 +27,13 @@ public class Tetris extends JFrame {
     final Color backColor;
 
     private Tetris() {
+        try {
+            bimg = ImageIO.read(new File("src/main/res/jagger.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         renderySpot = new Canvas();
-
-
         renderySpot.setMinimumSize(dim);
         renderySpot.setMaximumSize(dim);
         renderySpot.setPreferredSize(dim);
@@ -81,13 +91,14 @@ public class Tetris extends JFrame {
     private void updateGameState(){
 //        theta += (Math.PI / 50);/
 //        str = keyInput.getInput();
-          brian.update(10,keyInput.getInput(),dim);
+          brian.update(10,keyInput.getInput());
     }
 
     private void renderGame() {
         final Graphics2D g = (Graphics2D)renderySpot.getBufferStrategy().getDrawGraphics();
         g.setColor(backColor);
-        g.fillRect(0,0,dim.width,dim.height);
+        //g.fillRect(0,0,dim.width,dim.height);
+        g.drawImage(bimg, 0,0, dim.width, dim.height, null, null);
 
         brian.render(g);
         renderySpot.getBufferStrategy().show();
@@ -95,11 +106,6 @@ public class Tetris extends JFrame {
 
     //region SpaceX
     public static void main(String[] args) {
-//        String fonts[] = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
-//        for(String font: fonts) {
-//            System.out.printf("This is font %s %n", font);
-//        }
-
         try {
             Tetris tets = new Tetris();
             tets.setVisible(true);

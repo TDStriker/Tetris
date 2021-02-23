@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a66d8685-0294-4af4-8096-edda6ec71084" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java" afterDir="false" />
+    </list>
+    <list id="315b1f46-cddd-4e9c-b094-32cab0d8b621" name="Changes by abdul" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java" afterDir="false" />
+    </list>
+    <list id="93ef6f32-9037-4d13-8951-b63e0f32040b" name="Changes by bobea" comment="" />
+    <list id="423930df-edba-4f4a-bb06-23f2cdceca5e" name="Changes by jagst" comment="" />
+    <list id="2ae8319d-fd36-4697-8ae6-ed500c7ad678" name="Changes by Sebastian" comment="" />
+    <list id="da5f0efa-9fbd-4ded-907b-59824d70299f" name="Changes by video" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Tetris" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Tetris" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java">
+      <ranges>
+        <range start1="19" end1="19" start2="19" end2="20" changelist="315b1f46-cddd-4e9c-b094-32cab0d8b621" />
+        <range start1="20" end1="21" start2="21" end2="22" changelist="da5f0efa-9fbd-4ded-907b-59824d70299f" />
+        <range start1="27" end1="27" start2="28" end2="29" changelist="da5f0efa-9fbd-4ded-907b-59824d70299f" />
+        <range start1="29" end1="30" start2="31" end2="32" changelist="da5f0efa-9fbd-4ded-907b-59824d70299f" />
+        <range start1="37" end1="38" start2="39" end2="41" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+        <range start1="50" end1="53" start2="53" end2="56" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+        <range start1="54" end1="55" start2="57" end2="61" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+        <range start1="58" end1="59" start2="64" end2="66" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="3" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+        <range start1="4" end1="4" start2="5" end2="7" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+        <range start1="9" end1="9" start2="12" end2="14" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+        <range start1="13" end1="15" start2="18" end2="20" changelist="da5f0efa-9fbd-4ded-907b-59824d70299f" />
+        <range start1="23" end1="23" start2="28" end2="34" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+        <range start1="24" end1="26" start2="35" end2="35" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+        <range start1="83" end1="84" start2="92" end2="93" changelist="da5f0efa-9fbd-4ded-907b-59824d70299f" />
+        <range start1="89" end1="90" start2="98" end2="100" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+        <range start1="97" end1="102" start2="107" end2="107" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+      </ranges>
+    </file>
+  </component>
+  <component name="ProjectId" id="1orFusEWmsJrP2m6LIHC3N3toh4" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\abara\IdeaProjects\TetrisPotato\src\main\java\org" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Tetris" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.richyrich.tetris.Tetris" />
+      <module name="Tetris.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.richyrich.tetris.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Tetris" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a66d8685-0294-4af4-8096-edda6ec71084" name="Default Changelist" comment="" />
+      <created>1614037028116</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1614037028116</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

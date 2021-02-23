@@ -17,17 +17,19 @@ public class SpinnyText {
 
     Color color;
     Font font;
+    Dimension dim;
 
-    public SpinnyText(int y, int x, float rotSpeed, float theta, Color color, Font font) {
+    public SpinnyText(int y, int x, float rotSpeed, float theta, Color color, Font font, Dimension dim) {
         this.y = y;
         this.x = x;
         this.rotSpeed = rotSpeed;
         this.theta = theta;
         this.color = color;
         this.font = font;
+        this.dim = dim;
 
         this.strWidth = 0;
-        this.velocityX = 0;
+        this.velocityX = 100;
         this.velocityY = 150;
     }
 
@@ -35,7 +37,8 @@ public class SpinnyText {
         theta += (2 * Math.PI * rotSpeed) * (elapsedTimeMillis / 1000f);
         this.str = str;
 
-        screenSaver(elapsedTimeMillis,dim);
+        // You aren't declaring a new parameter,  you need to pass it a r
+        screenSaver(elapsedTimeMillis);
     }
 
     public void render(Graphics2D g){
@@ -48,15 +51,19 @@ public class SpinnyText {
         g.drawString(str, 0 - (strWidth / 2), 0);
     }
 
-    private void screenSaver(int elapsedTimeMillis, Dimension dim){
-        double textExtentX = Math.abs(strWidth/2 * Math.cos(theta));
-        double textExtentY = Math.abs(strWidth/2 * Math.sin(theta));
+    private void screenSaver(int elapsedTimeMillis) {
+        final double textExtentX = Math.abs(strWidth/2 * Math.cos(theta));
+        final double textExtentY = Math.abs(strWidth/2 * Math.sin(theta));
 
-        if((x - (textExtentX)) <= 0 || (x + (textExtentX)) >= dim.width){
+        //Yo, someone please type something so that I can tell if this is working or not
+        //Thank you,  that is more better,
+
+        if((((x - textExtentX) <= 0) && (velocityX < 0)) || (((x + textExtentX) >= dim.width) && (velocityX > 0))){
             velocityX = -velocityX;
             rotSpeed = -rotSpeed;
         }
-        if((y - (textExtentY)) <= 0 || (y + (textExtentY)) >= dim.height){
+
+        if((((y - textExtentY) <= 0) && (velocityY < 0 )) || (((y + textExtentY) >= dim.height) && (velocityY > 0))){
             velocityY = -velocityY;
             rotSpeed = -rotSpeed;
         }
