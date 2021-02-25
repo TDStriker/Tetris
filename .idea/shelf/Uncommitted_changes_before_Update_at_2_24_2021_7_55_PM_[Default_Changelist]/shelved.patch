@@ -1,0 +1,290 @@
+Index: src/main/java/org/richyrich/tetris/Tetris.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.richyrich.tetris;\r\n\r\nimport javax.imageio.ImageIO;\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.awt.image.BufferedImage;\r\nimport java.io.File;\r\nimport java.io.IOException;\r\n\r\npublic class Tetris extends JFrame {\r\n    final static int BOARD_WIDTH = 10;\r\n    final static int BOARD_HEIGHT = 20;\r\n\r\n    BufferedImage bimg;\r\n\r\n    final Dimension dim = new Dimension(1000, 600);\r\n    final Canvas renderySpot;\r\n\r\n    final KeyboardListener keyInput = new KeyboardListener();\r\n    final SpinnyText brian = new SpinnyText(dim.height/2, dim.width/2, 1, 0, new Color((int)(Math.random()*128),(int)(Math.random()*128),(int)(Math.random()*128)),\r\n        new Font(\"Verdana\", (Font.ITALIC), 20), dim);\r\n    //Brian Fact! Brian is the Brian of the operation. Respect him.\r\n\r\n//    float theta = 0;\r\n//    String str;\r\n\r\n    final Color backColor;\r\n\r\n    private Tetris() {\r\n        try {\r\n            bimg = ImageIO.read(new File(\"src/main/res/jagger.png\"));\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n        renderySpot = new Canvas();\r\n        renderySpot.setMinimumSize(dim);\r\n        renderySpot.setMaximumSize(dim);\r\n        renderySpot.setPreferredSize(dim);\r\n\r\n        this.add(renderySpot);\r\n        this.setResizable(false);\r\n        this.pack();\r\n\r\n        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);\r\n        SwingUtilities.invokeLater(this::start);\r\n\r\n        this.backColor = new Color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));\r\n    }\r\n\r\n    private void start() {\r\n        // set the look and feel to the system look and feel\r\n        try {\r\n            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());\r\n        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n        renderySpot.setVisible(true);\r\n\r\n        // don't allow AWT to paint the canvas since we are\r\n        this.renderySpot.setIgnoreRepaint(true);\r\n        // enable double buffering (the JFrame has to be\r\n        // visible before this can be done)\r\n        this.renderySpot.createBufferStrategy(2);\r\n        this.renderySpot.requestFocus();\r\n\r\n        // I am a pretty pretty princess.  Pleas someone write some code\r\n        // Please. Thank you.\r\n        this.renderySpot.addKeyListener(keyInput);\r\n        final Thread gameThread = new Thread(this::gameLoop);\r\n        gameThread.setDaemon(true);\r\n        gameThread.start();\r\n    }\r\n\r\n    private void gameLoop() {\r\n        while(true) {\r\n            long startTime = System.currentTimeMillis();\r\n\r\n            updateGameState();\r\n            renderGame();\r\n\r\n            try {\r\n                Thread.sleep(Math.max(0, 10 - (System.currentTimeMillis() - startTime)));\r\n            } catch (InterruptedException e) {\r\n                e.printStackTrace();\r\n            }\r\n        }\r\n    }\r\n\r\n    private void updateGameState(){\r\n//        theta += (Math.PI / 50);/\r\n//        str = keyInput.getInput();\r\n          brian.update(10,keyInput.getInput());\r\n    }\r\n\r\n    private void renderGame() {\r\n        final Graphics2D g = (Graphics2D)renderySpot.getBufferStrategy().getDrawGraphics();\r\n        g.setColor(backColor);\r\n        //g.fillRect(0,0,dim.width,dim.height);\r\n        g.drawImage(bimg, 0,0, dim.width, dim.height, null, null);\r\n\r\n        brian.render(g);\r\n        renderySpot.getBufferStrategy().show();\r\n    }\r\n\r\n    //region SpaceX\r\n    public static void main(String[] args) {\r\n        try {\r\n            Tetris tets = new Tetris();\r\n            tets.setVisible(true);\r\n        } catch(Exception ex) {\r\n            ex.printStackTrace();\r\n        }\r\n    }\r\n    //endregion\r\n\r\n    //region Sandwiches\r\n    /*\r\n    private static void doGameStuff() {\r\n        // Imagine this take 102ms\r\n        long startTime = System.currentTimeMillis();\r\n\r\n        playerAction();\r\n        gameRefresh();\r\n        //Board\r\n        display();\r\n\r\n        thread.sleep(Math.max(0, 100 - (System.currentTimeMillis() - startTime)));\r\n    }\r\n\r\n    private static void gameRefresh(){\r\n        applyGravity();\r\n        clearRows();\r\n    }\r\n\r\n    private static void applyGravity(){\r\n        killCurrentBlock();\r\n        spawnBlock();\r\n    }\r\n\r\n    public static void killCurrentBlock(){\r\n        // When converting current piece to Dead Blocks, check to see if any blocks are out of bounds\r\n        // Traverse through current piece (matrix) and add the blocks to the game board\r\n        checkGameLose();\r\n    }\r\n\r\n    public static void checkGameLose(){\r\n        //check to see if any current blocks are out of bounds\r\n    }*/\r\n    //endregion\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/richyrich/tetris/Tetris.java b/src/main/java/org/richyrich/tetris/Tetris.java
+--- a/src/main/java/org/richyrich/tetris/Tetris.java	(revision 78c6dfb9e8a04a7b465877be673b54bcfaee59b5)
++++ b/src/main/java/org/richyrich/tetris/Tetris.java	(date 1614208722078)
+@@ -18,7 +18,7 @@
+ 
+     final KeyboardListener keyInput = new KeyboardListener();
+     final SpinnyText brian = new SpinnyText(dim.height/2, dim.width/2, 1, 0, new Color((int)(Math.random()*128),(int)(Math.random()*128),(int)(Math.random()*128)),
+-        new Font("Verdana", (Font.ITALIC), 20), dim);
++        new Font("ROG Fonts", (Font.ITALIC), 20), dim);
+     //Brian Fact! Brian is the Brian of the operation. Respect him.
+ 
+ //    float theta = 0;
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CompilerConfiguration\">\r\n    <bytecodeTargetLevel target=\"11\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+--- a/.idea/compiler.xml	(revision 78c6dfb9e8a04a7b465877be673b54bcfaee59b5)
++++ b/.idea/compiler.xml	(date 1614122532365)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="CompilerConfiguration">
+-    <bytecodeTargetLevel target="11" />
++    <bytecodeTargetLevel target="13" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/main/java/org/richyrich/tetris/RandomJavaStuff.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/richyrich/tetris/RandomJavaStuff.java b/src/main/java/org/richyrich/tetris/RandomJavaStuff.java
+new file mode 100644
+--- /dev/null	(date 1614210090480)
++++ b/src/main/java/org/richyrich/tetris/RandomJavaStuff.java	(date 1614210090480)
+@@ -0,0 +1,16 @@
++package org.richyrich.tetris;
++
++public class RandomJavaStuff {
++    public static void main(String[] args){
++        Face[] things = new Face[5];
++        things[0] = ((num1, num2) -> {return num1 + num2;});
++        things[1] = ((num1, num2) -> {return num1 - num2;});
++        things[2] = ((num1, num2) -> {return num1 * num2;});
++        things[3] = ((num1, num2) -> {return (int)Math.pow(num1,num2);});
++        things[2] = ((num1, num2) -> {return (int)(Math.sin(num1) * num2);});
++
++        for(Face thing : things){
++            System.out.println(thing.doMathThing(4,6));
++        }
++    }
++}
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"gradleHome\" value=\"$PROJECT_DIR$/../../../../Program Files/gradle/gradle-6.8.2\" />\r\n        <option name=\"gradleJvm\" value=\"#JAVA_HOME\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n          </set>\r\n        </option>\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision 78c6dfb9e8a04a7b465877be673b54bcfaee59b5)
++++ b/.idea/gradle.xml	(date 1614122532375)
+@@ -1,12 +1,11 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="GradleMigrationSettings" migrationVersion="1" />
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+-        <option name="gradleHome" value="$PROJECT_DIR$/../../../../Program Files/gradle/gradle-6.8.2" />
+-        <option name="gradleJvm" value="#JAVA_HOME" />
+         <option name="modules">
+           <set>
+             <option value="$PROJECT_DIR$" />
+Index: src/main/java/org/richyrich/tetris/Face.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/richyrich/tetris/Face.java b/src/main/java/org/richyrich/tetris/Face.java
+new file mode 100644
+--- /dev/null	(date 1614209922845)
++++ b/src/main/java/org/richyrich/tetris/Face.java	(date 1614209922845)
+@@ -0,0 +1,5 @@
++package org.richyrich.tetris;
++
++public interface Face {
++    public int doMathThing(int num1, int num2);
++}
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"11\" project-jdk-type=\"JavaSDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 78c6dfb9e8a04a7b465877be673b54bcfaee59b5)
++++ b/.idea/misc.xml	(date 1614122532353)
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ExternalStorageConfigurationManager" enabled="true" />
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_13" default="true" project-jdk-name="13" project-jdk-type="JavaSDK" />
+ </project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"a66d8685-0294-4af4-8096-edda6ec71084\" name=\"Default Changelist\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/build.gradle\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/build.gradle\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/settings.gradle\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/settings.gradle\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java\" afterDir=\"false\" />\r\n    </list>\r\n    <list id=\"315b1f46-cddd-4e9c-b094-32cab0d8b621\" name=\"Changes by abdul\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java\" afterDir=\"false\" />\r\n    </list>\r\n    <list id=\"93ef6f32-9037-4d13-8951-b63e0f32040b\" name=\"Changes by bobea\" comment=\"\" />\r\n    <list id=\"423930df-edba-4f4a-bb06-23f2cdceca5e\" name=\"Changes by jagst\" comment=\"\" />\r\n    <list id=\"2ae8319d-fd36-4697-8ae6-ed500c7ad678\" name=\"Changes by Sebastian\" comment=\"\" />\r\n    <list id=\"da5f0efa-9fbd-4ded-907b-59824d70299f\" name=\"Changes by video\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <task path=\"$PROJECT_DIR$\">\r\n          <activation />\r\n        </task>\r\n        <task path=\"$PROJECT_DIR$/app\">\r\n          <activation />\r\n        </task>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"Tetris\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"Tetris\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n              </path>\r\n            </expand>\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"LineStatusTrackerManager\">\r\n    <file path=\"$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java\">\r\n      <ranges>\r\n        <range start1=\"19\" end1=\"19\" start2=\"19\" end2=\"20\" changelist=\"315b1f46-cddd-4e9c-b094-32cab0d8b621\" />\r\n        <range start1=\"20\" end1=\"21\" start2=\"21\" end2=\"22\" changelist=\"da5f0efa-9fbd-4ded-907b-59824d70299f\" />\r\n        <range start1=\"27\" end1=\"27\" start2=\"28\" end2=\"29\" changelist=\"da5f0efa-9fbd-4ded-907b-59824d70299f\" />\r\n        <range start1=\"29\" end1=\"30\" start2=\"31\" end2=\"32\" changelist=\"da5f0efa-9fbd-4ded-907b-59824d70299f\" />\r\n        <range start1=\"37\" end1=\"38\" start2=\"39\" end2=\"41\" changelist=\"a66d8685-0294-4af4-8096-edda6ec71084\" />\r\n        <range start1=\"50\" end1=\"53\" start2=\"53\" end2=\"56\" changelist=\"a66d8685-0294-4af4-8096-edda6ec71084\" />\r\n        <range start1=\"54\" end1=\"55\" start2=\"57\" end2=\"61\" changelist=\"a66d8685-0294-4af4-8096-edda6ec71084\" />\r\n        <range start1=\"58\" end1=\"59\" start2=\"64\" end2=\"66\" changelist=\"a66d8685-0294-4af4-8096-edda6ec71084\" />\r\n      </ranges>\r\n    </file>\r\n    <file path=\"$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java\">\r\n      <ranges>\r\n        <range start1=\"2\" end1=\"2\" start2=\"2\" end2=\"3\" changelist=\"a66d8685-0294-4af4-8096-edda6ec71084\" />\r\n        <range start1=\"4\" end1=\"4\" start2=\"5\" end2=\"7\" changelist=\"a66d8685-0294-4af4-8096-edda6ec71084\" />\r\n        <range start1=\"9\" end1=\"9\" start2=\"12\" end2=\"14\" changelist=\"a66d8685-0294-4af4-8096-edda6ec71084\" />\r\n        <range start1=\"13\" end1=\"15\" start2=\"18\" end2=\"20\" changelist=\"da5f0efa-9fbd-4ded-907b-59824d70299f\" />\r\n        <range start1=\"23\" end1=\"23\" start2=\"28\" end2=\"34\" changelist=\"a66d8685-0294-4af4-8096-edda6ec71084\" />\r\n        <range start1=\"24\" end1=\"26\" start2=\"35\" end2=\"35\" changelist=\"a66d8685-0294-4af4-8096-edda6ec71084\" />\r\n        <range start1=\"83\" end1=\"84\" start2=\"92\" end2=\"93\" changelist=\"da5f0efa-9fbd-4ded-907b-59824d70299f\" />\r\n        <range start1=\"89\" end1=\"90\" start2=\"98\" end2=\"100\" changelist=\"a66d8685-0294-4af4-8096-edda6ec71084\" />\r\n        <range start1=\"97\" end1=\"102\" start2=\"107\" end2=\"107\" changelist=\"a66d8685-0294-4af4-8096-edda6ec71084\" />\r\n      </ranges>\r\n    </file>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1orFusEWmsJrP2m6LIHC3N3toh4\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"codeWithMe.voiceChat.enabledByDefault\" value=\"false\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Project\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.0\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.0\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"terminal\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\abara\\IdeaProjects\\TetrisPotato\\src\\main\\java\\org\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Tetris\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.richyrich.tetris.Tetris\" />\r\n      <module name=\"Tetris.main\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"org.richyrich.tetris.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Tetris\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"a66d8685-0294-4af4-8096-edda6ec71084\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1614037028116</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1614037028116</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 78c6dfb9e8a04a7b465877be673b54bcfaee59b5)
++++ b/.idea/workspace.xml	(date 1614209725440)
+@@ -4,22 +4,19 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="a66d8685-0294-4af4-8096-edda6ec71084" name="Default Changelist" comment="">
+-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java" afterDir="false" />
+-    </list>
+-    <list id="315b1f46-cddd-4e9c-b094-32cab0d8b621" name="Changes by abdul" comment="">
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java" afterDir="false" />
+-    </list>
+-    <list id="93ef6f32-9037-4d13-8951-b63e0f32040b" name="Changes by bobea" comment="" />
+-    <list id="423930df-edba-4f4a-bb06-23f2cdceca5e" name="Changes by jagst" comment="" />
+-    <list id="2ae8319d-fd36-4697-8ae6-ed500c7ad678" name="Changes by Sebastian" comment="" />
+-    <list id="da5f0efa-9fbd-4ded-907b-59824d70299f" name="Changes by video" comment="">
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java" afterDir="false" />
++    <list default="true" id="9a5e14ef-6a00-479c-901a-233ef6b7800e" name="Default Changelist" comment="Tetris">
++      <change afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Face.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/RandomJavaStuff.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java" afterDir="false" />
+     </list>
++    <list id="3a79c27c-cf5d-4ae5-a9d2-e68e10616f7c" name="Changes by abara" comment="" />
++    <list id="1902c5b9-5ff0-42de-980f-76f3ae9a4969" name="Changes by abdul" comment="" />
++    <list id="9343efbf-a5ad-4d16-984d-c4741aec18aa" name="Changes by bobea" comment="" />
++    <list id="52558983-3302-415c-ba75-46c7b79c7c9c" name="Changes by jagst" comment="" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -57,36 +54,17 @@
+         </projects_view>
+       </state>
+     </system>
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Class" />
++        <option value="Interface" />
++      </list>
++    </option>
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-  </component>
+-  <component name="LineStatusTrackerManager">
+-    <file path="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java">
+-      <ranges>
+-        <range start1="19" end1="19" start2="19" end2="20" changelist="315b1f46-cddd-4e9c-b094-32cab0d8b621" />
+-        <range start1="20" end1="21" start2="21" end2="22" changelist="da5f0efa-9fbd-4ded-907b-59824d70299f" />
+-        <range start1="27" end1="27" start2="28" end2="29" changelist="da5f0efa-9fbd-4ded-907b-59824d70299f" />
+-        <range start1="29" end1="30" start2="31" end2="32" changelist="da5f0efa-9fbd-4ded-907b-59824d70299f" />
+-        <range start1="37" end1="38" start2="39" end2="41" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+-        <range start1="50" end1="53" start2="53" end2="56" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+-        <range start1="54" end1="55" start2="57" end2="61" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+-        <range start1="58" end1="59" start2="64" end2="66" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+-      </ranges>
+-    </file>
+-    <file path="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java">
+-      <ranges>
+-        <range start1="2" end1="2" start2="2" end2="3" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+-        <range start1="4" end1="4" start2="5" end2="7" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+-        <range start1="9" end1="9" start2="12" end2="14" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+-        <range start1="13" end1="15" start2="18" end2="20" changelist="da5f0efa-9fbd-4ded-907b-59824d70299f" />
+-        <range start1="23" end1="23" start2="28" end2="34" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+-        <range start1="24" end1="26" start2="35" end2="35" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+-        <range start1="83" end1="84" start2="92" end2="93" changelist="da5f0efa-9fbd-4ded-907b-59824d70299f" />
+-        <range start1="89" end1="90" start2="98" end2="100" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+-        <range start1="97" end1="102" start2="107" end2="107" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
+-      </ranges>
+-    </file>
+   </component>
+   <component name="ProjectId" id="1orFusEWmsJrP2m6LIHC3N3toh4" />
+   <component name="ProjectViewState">
+@@ -97,10 +75,8 @@
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
+-    <property name="project.structure.last.edited" value="Project" />
+-    <property name="project.structure.proportion" value="0.0" />
+-    <property name="project.structure.side.proportion" value="0.0" />
+-    <property name="settings.editor.selected.configurable" value="terminal" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/build.gradle" />
++    <property name="settings.editor.selected.configurable" value="CodeWithMe" />
+   </component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+@@ -130,12 +106,34 @@
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+-      <changelist id="a66d8685-0294-4af4-8096-edda6ec71084" name="Default Changelist" comment="" />
+-      <created>1614037028116</created>
++      <changelist id="9a5e14ef-6a00-479c-901a-233ef6b7800e" name="Default Changelist" comment="" />
++      <created>1613606797167</created>
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+-      <updated>1614037028116</updated>
++      <updated>1613606797167</updated>
++    </task>
++    <task id="LOCAL-00001" summary="Spinning">
++      <created>1613787641391</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1613787641391</updated>
++    </task>
++    <task id="LOCAL-00002" summary="Spinning">
++      <created>1614036972120</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1614036972120</updated>
+     </task>
++    <task id="LOCAL-00003" summary="Tetris">
++      <created>1614038267095</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1614038267095</updated>
++    </task>
++    <option name="localTasksCounter" value="4" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -148,5 +146,27 @@
+         </entry>
+       </map>
+     </option>
++    <option name="oldMeFiltersMigrated" value="true" />
++  </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="Spinning" />
++    <MESSAGE value="Tetris" />
++    <option name="LAST_COMMIT_MESSAGE" value="Tetris" />
++  </component>
++  <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java</url>
++          <line>60</line>
++          <option name="timeStamp" value="1" />
++        </line-breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
++    <watches-manager>
++      <configuration name="GradleRunConfiguration">
++        <watch expression="Math.abs(strWidth/2 * Math.sin(theta))" language="JAVA" />
++      </configuration>
++    </watches-manager>
+   </component>
+ </project>
+\ No newline at end of file
