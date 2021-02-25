@@ -17,12 +17,10 @@ public class Tetris extends JFrame {
     final Canvas renderySpot;
 
     final KeyboardListener keyInput = new KeyboardListener();
-    final SpinnyText brian = new SpinnyText(dim.height/2, dim.width/2, 1, 0, new Color((int)(Math.random()*128),(int)(Math.random()*128),(int)(Math.random()*128)),
-        new Font("Verdana", (Font.ITALIC), 20), dim);
-    //Brian Fact! Brian is the Brian of the operation. Respect him.
+    final SpinnyText brian = new SpinnyText(dim.height / 2, dim.width / 2, 1, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
+        new Font("ROG Fonts", (Font.ITALIC), 20), dim);
 
-//    float theta = 0;
-//    String str;
+    ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen gameBoard;
 
     final Color backColor;
 
@@ -45,7 +43,7 @@ public class Tetris extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         SwingUtilities.invokeLater(this::start);
 
-        this.backColor = new Color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
+        this.backColor = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
     }
 
     private void start() {
@@ -68,13 +66,19 @@ public class Tetris extends JFrame {
         // I am a pretty pretty princess.  Pleas someone write some code
         // Please. Thank you.
         this.renderySpot.addKeyListener(keyInput);
+
+
+        //////////
+        gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(10, 10, 100, 200);
+
+
         final Thread gameThread = new Thread(this::gameLoop);
         gameThread.setDaemon(true);
         gameThread.start();
     }
 
     private void gameLoop() {
-        while(true) {
+        while (true) {
             long startTime = System.currentTimeMillis();
 
             updateGameState();
@@ -88,19 +92,18 @@ public class Tetris extends JFrame {
         }
     }
 
-    private void updateGameState(){
-//        theta += (Math.PI / 50);/
-//        str = keyInput.getInput();
-          brian.update(10,keyInput.getInput());
+    private void updateGameState() {
+        brian.update(10, keyInput.getInput());
+        gameBoard.update(10);
     }
 
     private void renderGame() {
-        final Graphics2D g = (Graphics2D)renderySpot.getBufferStrategy().getDrawGraphics();
+        final Graphics2D g = (Graphics2D) renderySpot.getBufferStrategy().getDrawGraphics();
         g.setColor(backColor);
-        //g.fillRect(0,0,dim.width,dim.height);
-        g.drawImage(bimg, 0,0, dim.width, dim.height, null, null);
+        g.drawImage(bimg, 0, 0, dim.width, dim.height, null, null);
 
         brian.render(g);
+        gameBoard.render(g);
         renderySpot.getBufferStrategy().show();
     }
 
@@ -109,44 +112,9 @@ public class Tetris extends JFrame {
         try {
             Tetris tets = new Tetris();
             tets.setVisible(true);
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    //endregion
-
-    //region Sandwiches
-    /*
-    private static void doGameStuff() {
-        // Imagine this take 102ms
-        long startTime = System.currentTimeMillis();
-
-        playerAction();
-        gameRefresh();
-        //Board
-        display();
-
-        thread.sleep(Math.max(0, 100 - (System.currentTimeMillis() - startTime)));
-    }
-
-    private static void gameRefresh(){
-        applyGravity();
-        clearRows();
-    }
-
-    private static void applyGravity(){
-        killCurrentBlock();
-        spawnBlock();
-    }
-
-    public static void killCurrentBlock(){
-        // When converting current piece to Dead Blocks, check to see if any blocks are out of bounds
-        // Traverse through current piece (matrix) and add the blocks to the game board
-        checkGameLose();
-    }
-
-    public static void checkGameLose(){
-        //check to see if any current blocks are out of bounds
-    }*/
     //endregion
 }
