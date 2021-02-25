@@ -1,6 +1,7 @@
 package org.richyrich.tetris;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 
 public class SpinnyText {
     String str;
@@ -42,6 +43,8 @@ public class SpinnyText {
     }
 
     public void render(Graphics2D g){
+        AffineTransform old = g.getTransform();
+
         g.setColor(color);
         g.setFont(font);
         FontMetrics fontMetrics = g.getFontMetrics();
@@ -49,6 +52,8 @@ public class SpinnyText {
         g.translate(x,y);
         g.rotate(theta); //g.rotate rotates around 0,0
         g.drawString(str, 0 - (strWidth / 2), 0);
+
+        g.setTransform(old);
     }
 
     private void screenSaver(int elapsedTimeMillis) {
