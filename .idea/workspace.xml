@@ -5,22 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66d8685-0294-4af4-8096-edda6ec71084" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/GameObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen.java" afterDir="false" />
     </list>
     <list id="315b1f46-cddd-4e9c-b094-32cab0d8b621" name="Changes by abdul" comment="" />
     <list id="93ef6f32-9037-4d13-8951-b63e0f32040b" name="Changes by bobea" comment="" />
     <list id="423930df-edba-4f4a-bb06-23f2cdceca5e" name="Changes by jagst" comment="" />
     <list id="2ae8319d-fd36-4697-8ae6-ed500c7ad678" name="Changes by Sebastian" comment="" />
-    <list id="da5f0efa-9fbd-4ded-907b-59824d70299f" name="Changes by video" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java" afterDir="false" />
-    </list>
+    <list id="da5f0efa-9fbd-4ded-907b-59824d70299f" name="Changes by video" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,30 +66,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/Tetris.java">
-      <ranges>
-        <range start1="19" end1="22" start2="19" end2="21" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
-        <range start1="23" end1="25" start2="22" end2="23" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
-        <range start1="47" end1="48" start2="45" end2="46" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
-        <range start1="70" end1="70" start2="68" end2="74" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
-        <range start1="76" end1="77" start2="80" end2="81" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
-        <range start1="90" end1="94" start2="94" end2="97" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
-        <range start1="97" end1="98" start2="100" end2="101" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
-        <range start1="99" end1="101" start2="102" end2="103" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
-        <range start1="103" end1="103" start2="105" end2="106" changelist="da5f0efa-9fbd-4ded-907b-59824d70299f" />
-        <range start1="111" end1="112" start2="114" end2="115" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
-        <range start1="116" end1="151" start2="119" end2="119" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/org/richyrich/tetris/SpinnyText.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="4" changelist="a66d8685-0294-4af4-8096-edda6ec71084" />
-        <range start1="44" end1="44" start2="45" end2="47" changelist="da5f0efa-9fbd-4ded-907b-59824d70299f" />
-        <range start1="51" end1="51" start2="54" end2="56" changelist="da5f0efa-9fbd-4ded-907b-59824d70299f" />
-      </ranges>
-    </file>
-  </component>
   <component name="ProjectId" id="1orFusEWmsJrP2m6LIHC3N3toh4" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -107,7 +79,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -143,6 +115,14 @@
       <option name="presentableId" value="Default" />
       <updated>1614037028116</updated>
     </task>
+    <task id="LOCAL-00001" summary="Idk">
+      <created>1614215043958</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1614215043958</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -156,5 +136,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Idk" />
+    <option name="LAST_COMMIT_MESSAGE" value="Idk" />
   </component>
 </project>

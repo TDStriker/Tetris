@@ -6,7 +6,7 @@ import java.awt.geom.AffineTransform;
 public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen implements GameObject {
     // What Data do you need?
     // Hint:  Where is this thing?  How big is it?
-    private static int SQUARE_LENGTH = 10;
+    private static int SQUARE_LENGTH = 25;
 
     private int boardWidth;
     private int boardHeight;
@@ -39,7 +39,8 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         // Draw a temporary grid of spaces where the blocks will go
         for(int i = 0; i < gameBoard.length; i++){
             for(int j = 0; j < gameBoard[0].length; j++){
-                g.drawRect(x + j*SQUARE_LENGTH, y+i*SQUARE_LENGTH, SQUARE_LENGTH, SQUARE_LENGTH);
+//                g.drawRect(x + j*SQUARE_LENGTH, y+i*SQUARE_LENGTH, SQUARE_LENGTH, SQUARE_LENGTH);
+                g.drawImage(Tetris.bimg, x + j*SQUARE_LENGTH, y+i*SQUARE_LENGTH, SQUARE_LENGTH, SQUARE_LENGTH, null, null);
             }
         }
 

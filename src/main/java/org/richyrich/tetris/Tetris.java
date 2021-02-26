@@ -11,9 +11,9 @@ public class Tetris extends JFrame {
     final static int BOARD_WIDTH = 10;
     final static int BOARD_HEIGHT = 20;
 
-    BufferedImage bimg;
+    public static BufferedImage bimg;
 
-    final Dimension dim = new Dimension(1000, 600);
+    final Dimension dim = new Dimension(600, 600);
     final Canvas renderySpot;
 
     final KeyboardListener keyInput = new KeyboardListener();
