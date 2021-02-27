@@ -8,18 +8,18 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
     // Hint:  Where is this thing?  How big is it?
     private int squareLength = 25;
 
-    private int boardWidth;
-    private int boardHeight;
+    private int maxBoardWidth;
+    private int maxBoardHeight;
     private int x;
     private int y;
     private int border = 4;
 
     private int[][] gameBoard = new int[Tetris.BOARD_HEIGHT][Tetris.BOARD_WIDTH];
 
-    public ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(int x, int y, int boardWidth, int boardHeight){
-        this.boardWidth = boardWidth;
-        this.boardHeight = boardHeight;
-        this.squareLength = Math.min(((boardWidth-(border*2))/10), ((boardHeight-(border*2))/20));
+    public ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(int x, int y, int maxBoardWidth, int maxBoardHeight){
+        this.maxBoardWidth = maxBoardWidth;
+        this.maxBoardHeight = maxBoardHeight;
+        this.squareLength = Math.min(((maxBoardWidth-(border*2))/10), ((maxBoardHeight-(border*2))/20));
         this.x = x;
         this.y = y;
     }
