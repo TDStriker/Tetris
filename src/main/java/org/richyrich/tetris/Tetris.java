@@ -43,7 +43,8 @@ public class Tetris extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         SwingUtilities.invokeLater(this::start);
 
-        this.backColor = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
+        //this.backColor = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
+        this.backColor = Color.BLACK;
     }
 
     private void start() {
@@ -68,8 +69,11 @@ public class Tetris extends JFrame {
         this.renderySpot.addKeyListener(keyInput);
 
 
-        //////////
-        gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(10, 10, 100, 200);
+        // I sure hope ANDY doesn't see this!
+        //shhhhhhhh
+        int border = 20;
+        int borderHeight = dim.height-(border*2);                                                   // Since the matrix is 10 x 20 the width is half of the height.
+        gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(border, border, borderHeight/2, borderHeight);
 
 
         final Thread gameThread = new Thread(this::gameLoop);
@@ -100,7 +104,8 @@ public class Tetris extends JFrame {
     private void renderGame() {
         final Graphics2D g = (Graphics2D) renderySpot.getBufferStrategy().getDrawGraphics();
         g.setColor(backColor);
-        g.drawImage(bimg, 0, 0, dim.width, dim.height, null, null);
+        //g.drawImage(bimg, 0, 0, dim.width, dim.height, null, null);
+        g.fillRect(0,0, dim.width, dim.height);
 
         brian.render(g);
         gameBoard.render(g);

@@ -6,18 +6,20 @@ import java.awt.geom.AffineTransform;
 public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen implements GameObject {
     // What Data do you need?
     // Hint:  Where is this thing?  How big is it?
-    private static int SQUARE_LENGTH = 25;
+    private int squareLength = 25;
 
-    private int boardWidth;
-    private int boardHeight;
+    private int maxBoardWidth;
+    private int maxBoardHeight;
     private int x;
     private int y;
+    private int border = 4;
 
     private int[][] gameBoard = new int[Tetris.BOARD_HEIGHT][Tetris.BOARD_WIDTH];
 
-    public ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(int x, int y, int boardWidth, int boardHeight){
-        this.boardWidth = boardWidth;
-        this.boardHeight = boardHeight;
+    public ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(int x, int y, int maxBoardWidth, int maxBoardHeight){
+        this.maxBoardWidth = maxBoardWidth;
+        this.maxBoardHeight = maxBoardHeight;
+        this.squareLength = Math.min(((maxBoardWidth-(border*2))/10), ((maxBoardHeight-(border*2))/20));
         this.x = x;
         this.y = y;
     }
@@ -35,12 +37,14 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         //do we know the dimensions of our board yet,  No.  You will need to pass it in from somewhere
         // You can do it via constructor, or a set of "setter" methods.
         g.drawRect(x, y, boardWidth, boardHeight);
+        Stroke potato = new Stroke();
+        g.setStroke();
 
         // Draw a temporary grid of spaces where the blocks will go
         for(int i = 0; i < gameBoard.length; i++){
             for(int j = 0; j < gameBoard[0].length; j++){
 //                g.drawRect(x + j*SQUARE_LENGTH, y+i*SQUARE_LENGTH, SQUARE_LENGTH, SQUARE_LENGTH);
-                g.drawImage(Tetris.bimg, x + j*SQUARE_LENGTH, y+i*SQUARE_LENGTH, SQUARE_LENGTH, SQUARE_LENGTH, null, null);
+                g.drawImage(Tetris.bimg, x + j*squareLength, y+i*squareLength, squareLength, squareLength, null, null);
             }
         }
 
