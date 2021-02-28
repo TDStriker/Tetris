@@ -69,11 +69,7 @@ public class Tetris extends JFrame {
         this.renderySpot.addKeyListener(keyInput);
 
 
-        // I sure hope ANDY doesn't see this!
-        //shhhhhhhh
-        int border = 20;
-        int borderHeight = dim.height-(border*2);                                                   // Since the matrix is 10 x 20 the width is half of the height.
-        gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(border, border, borderHeight/2, borderHeight);
+        gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(0, 0, dim.width/2, 600);
 
 
         final Thread gameThread = new Thread(this::gameLoop);
