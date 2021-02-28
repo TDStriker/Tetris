@@ -13,7 +13,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
     private int x;
     private int y;
     private int border = 4;
-
+    private int heightOffset;
     private int[][] gameBoard = new int[Tetris.BOARD_HEIGHT][Tetris.BOARD_WIDTH];
 
     public ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(int x, int y, int maxBoardWidth, int maxBoardHeight){
@@ -22,6 +22,8 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         this.squareLength = Math.min(((maxBoardWidth-(border*2))/10), ((maxBoardHeight-(border*2))/20));
         this.x = x;
         this.y = y;
+        int actualBoardHeight = (squareLength * 20) + (2 * border);
+        this.heightOffset = (maxBoardHeight - actualBoardHeight)/2;
     }
 
     @Override
@@ -35,11 +37,12 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         // Draw the rectangle for the board
         // Use the documentation to figure out what you need.
         //do we know the dimensions of our board yet,  No.  You will need to pass it in from somewhere
-        // You can do it via constructor, or a set of "setter" methods.
-        g.drawRect(x, y, boardWidth, boardHeight);
-        Stroke potato = new Stroke();
-        g.setStroke();
+        // You can do it via constructor, or a set of "setter" methods
 
+        g.translate(border*2, heightOffset);
+        g.setStroke(new BasicStroke (border));
+        g.drawRect(x, y, ((squareLength*10) + 2 * border), ((squareLength*20)+ 2 * border));
+        g.translate(border, border);
         // Draw a temporary grid of spaces where the blocks will go
         for(int i = 0; i < gameBoard.length; i++){
             for(int j = 0; j < gameBoard[0].length; j++){
