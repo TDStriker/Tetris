@@ -17,10 +17,23 @@ public class Tetris extends JFrame {
     final Canvas renderySpot;
 
     final KeyboardListener keyInput = new KeyboardListener();
-    final SpinnyText brian = new SpinnyText(dim.height / 2, dim.width / 2, 1, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
+
+
+    final SpinnyText brian = new SpinnyText(dim.height / 2, dim.width / 2, 5, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
         new Font("ROG Fonts", (Font.ITALIC), 20), dim);
+    final SpinnyText gregory = new SpinnyText(dim.height / 2, dim.width / 2, 1, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
+        new Font("Curlz MT", (Font.ITALIC), 20), dim);
+    final SpinnyText jim = new SpinnyText(dim.height / 2 + 10, dim.width / 2 + 10, 0.5f, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
+        new Font("Comic Sans MS", (Font.ITALIC), 20), dim);
+    final SpinnyText phil = new SpinnyText(0, 0, -2, (float)Math.PI, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
+        new Font("Verdana", (Font.ITALIC), 20), dim);
+    final SpinnyText roderick = new SpinnyText(0, 0, -2, (float)Math.PI, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
+        new Font("Jazz LET", (Font.ITALIC), 20), dim);
+
+    final SpinnyText[] theBoyz = {brian, gregory, jim, phil, roderick};
 
     ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen gameBoard;
+    CrystalCube fortuneTeller;
 
     final Color backColor;
 
@@ -69,8 +82,8 @@ public class Tetris extends JFrame {
         this.renderySpot.addKeyListener(keyInput);
 
 
-        gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(0, 0, dim.width/2, 600);
-
+        gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(0, 0, dim.width/2, dim.height);
+        fortuneTeller = new CrystalCube(dim.width/2, dim.height/2, dim.width/2, dim.height/2);
 
         final Thread gameThread = new Thread(this::gameLoop);
         gameThread.setDaemon(true);
@@ -95,6 +108,7 @@ public class Tetris extends JFrame {
     private void updateGameState() {
         brian.update(10, keyInput.getInput());
         gameBoard.update(10);
+        fortuneTeller.update(10);
     }
 
     private void renderGame() {
@@ -103,8 +117,20 @@ public class Tetris extends JFrame {
         //g.drawImage(bimg, 0, 0, dim.width, dim.height, null, null);
         g.fillRect(0,0, dim.width, dim.height);
 
-        brian.render(g);
+        g.setColor(new Color((int)(Math.random()*128) + 128,(int)(Math.random()*128) + 128,(int)(Math.random()*128) + 128));
         gameBoard.render(g);
+        fortuneTeller.render(g);
+
+//        brian.render(g);
+//        jim.render(g);
+//        phil.render(g);
+//        gregory.render(g);
+//        roderick.render(g);
+
+        for(SpinnyText madlad : theBoyz){
+            madlad.render(g);
+        }
+
         renderySpot.getBufferStrategy().show();
     }
 

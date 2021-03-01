@@ -34,10 +34,15 @@ public class SpinnyText {
         this.velocityY = 150;
     }
 
+    public void setColor(Color color){
+        this.color = color;
+    }
+
     public void update(int elapsedTimeMillis, String str) {
         theta += (2 * Math.PI * rotSpeed) * (elapsedTimeMillis / 1000f);
         this.str = str;
 
+        setColor(new Color((int)(Math.random()*128) + 128,(int)(Math.random()*128) + 128,(int)(Math.random()*128) + 128));
         // You aren't declaring a new parameter,  you need to pass it a r
         screenSaver(elapsedTimeMillis);
     }
@@ -65,12 +70,12 @@ public class SpinnyText {
 
         if((((x - textExtentX) <= 0) && (velocityX < 0)) || (((x + textExtentX) >= dim.width) && (velocityX > 0))){
             velocityX = -velocityX;
-            rotSpeed = -rotSpeed;
+            rotSpeed = -rotSpeed * 1.5f;
         }
 
         if((((y - textExtentY) <= 0) && (velocityY < 0 )) || (((y + textExtentY) >= dim.height) && (velocityY > 0))){
             velocityY = -velocityY;
-            rotSpeed = -rotSpeed;
+            rotSpeed = -rotSpeed * 1.5f;
         }
 
         x += (velocityX * (elapsedTimeMillis/1000f));

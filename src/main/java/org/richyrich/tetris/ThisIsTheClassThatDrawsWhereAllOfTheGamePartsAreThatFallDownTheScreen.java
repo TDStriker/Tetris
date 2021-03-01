@@ -3,6 +3,9 @@ package org.richyrich.tetris;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
+/**
+ * Class that updates and displays the game field
+ */
 public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen implements GameObject {
     // What Data do you need?
     // Hint:  Where is this thing?  How big is it?
