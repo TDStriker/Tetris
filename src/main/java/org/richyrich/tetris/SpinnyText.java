@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 
 public class SpinnyText {
-    String str;
+    String str = "";
     int strWidth;
     int y;
     int x;

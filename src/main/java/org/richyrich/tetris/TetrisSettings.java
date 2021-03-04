@@ -15,6 +15,9 @@ public class TetrisSettings {
     public static int UP_KEY = KeyEvent.VK_UP;
     public static int DOWN_KEY = KeyEvent.VK_DOWN;
 
+    public static int CW_ROT_KEY = KeyEvent.VK_E;
+    public static int CCW_ROT_KEY = KeyEvent.VK_Q;
+
     public static void setCanvas(Canvas canvas){
         TetrisSettings.CANVAS = canvas;
     }

@@ -23,6 +23,14 @@ public class Block implements GameObject{
         this.y = y;
     }
 
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return y;
+    }
+
     @Override
     public void update(int timePassed) {
 

@@ -24,6 +24,13 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
     private ResettableKeyHandler rightListener;
     private ResettableKeyHandler upListener;
     private ResettableKeyHandler downListener;
+    private ResettableKeyHandler clockwiseListener;
+    private ResettableKeyHandler counterClockwiseListener;
+
+
+    /** The time in milliseconds that has passed since the last time we took action based on gravity */
+    private int timeSinceGravity;
+    private int gravityRefreshRate;
 
     public ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(int x, int y, int maxBoardWidth, int maxBoardHeight){
         this.maxBoardWidth = maxBoardWidth;
@@ -41,15 +48,23 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         this.rightListener = new ResettableKeyHandler(TetrisSettings.RIGHT_KEY);
         this.upListener = new ResettableKeyHandler(TetrisSettings.UP_KEY);
         this.downListener = new ResettableKeyHandler(TetrisSettings.DOWN_KEY);
+        this.clockwiseListener = new ResettableKeyHandler(TetrisSettings.CW_ROT_KEY);
+        this.counterClockwiseListener = new ResettableKeyHandler(TetrisSettings.CCW_ROT_KEY);
 
         TetrisSettings.addKeyHandler(leftListener);
         TetrisSettings.addKeyHandler(rightListener);
         TetrisSettings.addKeyHandler(upListener);
         TetrisSettings.addKeyHandler(downListener);
+        TetrisSettings.addKeyHandler(clockwiseListener);
+        TetrisSettings.addKeyHandler(counterClockwiseListener);
+
+        gravityRefreshRate = 1000;
     }
 
     @Override
     public void update(int timePassed) {
+        timeSinceGravity += timePassed;
+
         if(leftListener.checkAndReset()) {
             currentPiece.moveHorizontal(-1);
             System.out.println("Slide to the Left!");
@@ -64,7 +79,20 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         }
         if(downListener.checkAndReset()){
             currentPiece.moveVertical(1);
-            System.out.println("Everybody Clap yo Hands!");
+            System.out.println("Everybody Clap Yo Hands!");
+        }
+        if(clockwiseListener.checkAndReset()){
+            currentPiece.rotateClockwise();
+            System.out.println("Reverse Reverse!");
+        }
+        if(counterClockwiseListener.checkAndReset()){
+            currentPiece.rotateCounterClockwise();
+            System.out.println("ChaCha Real Smooth!");
+        }
+
+        if(timeSinceGravity >= gravityRefreshRate){
+            currentPiece.moveVertical(1);
+            timeSinceGravity = 0;
         }
 
         currentPiece.update(timePassed);

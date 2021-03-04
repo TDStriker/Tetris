@@ -80,7 +80,7 @@ public class Tetris extends JFrame {
         // I am a pretty pretty princess.  Pleas someone write some code
         // Please. Thank you.
         this.renderySpot.addKeyListener(keyInput);
-
+        TetrisSettings.setCanvas(this.renderySpot);
 
         gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(0, 0, dim.width/2, dim.height);
         fortuneTeller = new CrystalCube(dim.width/2, dim.height/2, dim.width/2, dim.height/2);
@@ -106,9 +106,13 @@ public class Tetris extends JFrame {
     }
 
     private void updateGameState() {
-        brian.update(10, keyInput.getInput());
+//        brian.update(10, keyInput.getInput());
         gameBoard.update(10);
         fortuneTeller.update(10);
+
+        for(SpinnyText madlad : theBoyz){
+            madlad.update(10, keyInput.getInput());
+        }
     }
 
     private void renderGame() {
