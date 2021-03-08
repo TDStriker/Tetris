@@ -6,6 +6,7 @@ import java.awt.geom.AffineTransform;
 /**
  * Class that updates and displays the game field
  */
+//                                  W    A       G   P    A  T
 public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen implements GameObject {
     // What Data do you need?
     // Hint:  Where is this thing?  How big is it?
@@ -53,7 +54,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
 
         TetrisSettings.addKeyHandler(leftListener);
         TetrisSettings.addKeyHandler(rightListener);
-        TetrisSettings.addKeyHandler(upListener);
+//        TetrisSettings.addKeyHandler(upListener);
         TetrisSettings.addKeyHandler(downListener);
         TetrisSettings.addKeyHandler(clockwiseListener);
         TetrisSettings.addKeyHandler(counterClockwiseListener);
@@ -73,10 +74,10 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
             currentPiece.moveHorizontal(1);
             System.out.println("Slide to the Right!");
         }
-        if(upListener.checkAndReset()){
-            currentPiece.moveVertical(-1);
-            System.out.println("Criss-Cross!");
-        }
+//        if(upListener.checkAndReset()){
+//            currentPiece.moveVertical(-1);
+//            System.out.println("Criss-Cross!");
+//        }
         if(downListener.checkAndReset()){
             currentPiece.moveVertical(1);
             System.out.println("Everybody Clap Yo Hands!");
@@ -89,6 +90,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
             currentPiece.rotateCounterClockwise();
             System.out.println("ChaCha Real Smooth!");
         }
+
 
         if(timeSinceGravity >= gravityRefreshRate){
             currentPiece.moveVertical(1);

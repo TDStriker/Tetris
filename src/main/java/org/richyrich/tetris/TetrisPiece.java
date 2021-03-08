@@ -38,23 +38,26 @@ public class TetrisPiece implements GameObject {
         // Try to move
         x += magnitude;
 
-        // Check our bounds
-        if(x < 0) {
-            // Naw bro, off the left
-            x = 0;
-        } else if(x + width >= Tetris.BOARD_WIDTH) {
-            // Naw bro, off the right.
-            x = Tetris.BOARD_WIDTH - width - 1;
-        }
+        applyCollision();
+
+//        // Check our bounds
+//        if(x < 0) {
+//            // Naw bro, off the left
+//            x = 0;
+//        } else if(x + width >= Tetris.BOARD_WIDTH) {
+//            // Naw bro, off the right.
+//            x = Tetris.BOARD_WIDTH - width - 1;
+//        }
     }
 
     public void moveVertical(int magnitude){
         y+=magnitude;
-        if(y < 0) {
-            y = 0;
-        } else if(y + height >= Tetris.BOARD_HEIGHT) {
-            y = Tetris.BOARD_HEIGHT - height - 1;
-        }
+        applyCollision();
+//        if(y < 0) {
+//            y = 0;
+//        } else if(y + height >= Tetris.BOARD_HEIGHT) {
+//            y = Tetris.BOARD_HEIGHT - height - 1;
+//        }
     }
 
     //       rotate potate -> Wombo Combo
@@ -67,6 +70,8 @@ public class TetrisPiece implements GameObject {
         int tempWidth = width;
         width = height;
         height = tempWidth;
+
+        applyCollision();
     }
 
     public void rotateCounterClockwise(){
@@ -78,6 +83,8 @@ public class TetrisPiece implements GameObject {
         int tempWidth = width;
         width = height;
         height = tempWidth;
+
+        applyCollision();
     }
 
     @Override
