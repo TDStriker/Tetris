@@ -10,6 +10,8 @@ public class TetrisPiece implements GameObject {
     int width;
     int height;
 
+    boolean colorChanging = false;
+
     Block[] blocks;
 
     public TetrisPiece(Block[] blocks){
@@ -32,6 +34,21 @@ public class TetrisPiece implements GameObject {
     public void setPosition(int x, int y){
         this.x = x;
         this.y = y;
+    }
+
+    public void setColorChanging(boolean colorChanging){
+        this.colorChanging = colorChanging;
+    }
+
+    public Block[] getTranformBlocks(){
+        Block[] transformBlocks = new Block[blocks.length];
+        for(int i = 0; i < blocks.length; i++){
+            transformBlocks[i] = blocks[i].clone();
+
+            transformBlocks[i].setPosition(x+transformBlocks[i].getX(),y+transformBlocks[i].getY());
+        }
+
+        return transformBlocks;
     }
 
     public void moveHorizontal(int magnitude){
@@ -87,9 +104,37 @@ public class TetrisPiece implements GameObject {
         applyCollision();
     }
 
+    public void applyCollision(){
+        for(Block block : blocks){
+            if(x + block.getX() < 0){
+                x += -(x + block.getX());
+            } else if(x + block.getX() >= Tetris.BOARD_WIDTH){
+                x -= (x + block.getX() - Tetris.BOARD_WIDTH + 1);
+            }
+            if(y + block.getY() < 0){
+                y += -(y + block.getY());
+            }
+        }
+    }
+
+    public boolean isBlockDead(){
+        for(Block block : blocks){
+            if(y + block.getY() >= Tetris.BOARD_HEIGHT){
+                y -= (y + block.getY() - Tetris.BOARD_HEIGHT + 1);
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public void update(int timePassed) {
-
+        if(colorChanging){
+            Color color = new Color((int)(Math.random()*128)+128,(int)(Math.random()*128)+128,(int)(Math.random()*128)+128);
+            for(Block block : blocks){
+                block.setColor(color);
+            }
+        }
     }
 
     @Override
