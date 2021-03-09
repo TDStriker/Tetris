@@ -54,7 +54,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
 
         TetrisSettings.addKeyHandler(leftListener);
         TetrisSettings.addKeyHandler(rightListener);
-//        TetrisSettings.addKeyHandler(upListener);
+        TetrisSettings.addKeyHandler(upListener);
         TetrisSettings.addKeyHandler(downListener);
         TetrisSettings.addKeyHandler(clockwiseListener);
         TetrisSettings.addKeyHandler(counterClockwiseListener);
@@ -74,10 +74,10 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
             currentPiece.moveHorizontal(1);
             System.out.println("Slide to the Right!");
         }
-//        if(upListener.checkAndReset()){
-//            currentPiece.moveVertical(-1);
-//            System.out.println("Criss-Cross!");
-//        }
+        if(upListener.checkAndReset()){
+            currentPiece.moveVertical(-1);
+            System.out.println("Criss-Cross!");
+        }
         if(downListener.checkAndReset()){
             currentPiece.moveVertical(1);
             System.out.println("Everybody Clap Yo Hands!");
@@ -91,11 +91,19 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
             System.out.println("ChaCha Real Smooth!");
         }
 
-
-        if(timeSinceGravity >= gravityRefreshRate){
-            currentPiece.moveVertical(1);
-            timeSinceGravity = 0;
+        if(currentPiece.isBlockDead()){
+            Block[] deadBlocks = currentPiece.getTranformBlocks();
+            for(Block block : deadBlocks){
+                gameBoard[block.getY()][block.getX()] = block;
+            }
+            currentPiece = PieceFactory.DEFAULT.generatePiece();
+            currentPiece.setPosition(5, 0);
         }
+
+//        if(timeSinceGravity >= gravityRefreshRate){
+//            currentPiece.moveVertical(1);
+//            timeSinceGravity = 0;
+//        }
 
         currentPiece.update(timePassed);
     }

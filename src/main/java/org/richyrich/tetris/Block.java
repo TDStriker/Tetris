@@ -18,9 +18,17 @@ public class Block implements GameObject{
         this.y = y;
     }
 
+    public Block clone(){
+        return new Block(color, x, y);
+    }
+
     public void setPosition(int x, int y){
         this.x = x;
         this.y = y;
+    }
+
+    public void setColor(Color color){
+        this.color = color;
     }
 
     public int getX(){
