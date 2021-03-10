@@ -51,11 +51,17 @@ public class TetrisPiece implements GameObject {
         return transformBlocks;
     }
 
-    public void moveHorizontal(int magnitude){
+    /*
+    *  Say goodbye to you for a special Power UP! #GAMERZ @BIG_CHUNGUS
+    *  - not catalin (bc it was Caitlin all along)
+    *  - except maybe
+    *  - it was Jagger
+    */
+    public void moveHorizontal(int magnitude, Block[][] gameBoard){
         // Try to move
         x += magnitude;
 
-        applyCollision();
+        applyCollision(gameBoard, magnitude);
 
 //        // Check our bounds
 //        if(x < 0) {
@@ -69,7 +75,7 @@ public class TetrisPiece implements GameObject {
 
     public void moveVertical(int magnitude){
         y+=magnitude;
-        applyCollision();
+        return isBlockDead(gameBoard);
 //        if(y < 0) {
 //            y = 0;
 //        } else if(y + height >= Tetris.BOARD_HEIGHT) {
@@ -88,7 +94,7 @@ public class TetrisPiece implements GameObject {
         width = height;
         height = tempWidth;
 
-        applyCollision();
+        applyCollision(gameBoard,1);
     }
 
     public void rotateCounterClockwise(){
@@ -101,7 +107,7 @@ public class TetrisPiece implements GameObject {
         width = height;
         height = tempWidth;
 
-        applyCollision();
+        applyCollision(gameBoard,-1);
     }
 
     public void applyCollision(){
@@ -110,6 +116,9 @@ public class TetrisPiece implements GameObject {
                 x += -(x + block.getX());
             } else if(x + block.getX() >= Tetris.BOARD_WIDTH){
                 x -= (x + block.getX() - Tetris.BOARD_WIDTH + 1);
+            }
+            if(gameBoard[y+block.getY()][x+block.getX()] != null){
+                x += -magnidude;
             }
             if(y + block.getY() < 0){
                 y += -(y + block.getY());
@@ -121,6 +130,11 @@ public class TetrisPiece implements GameObject {
         for(Block block : blocks){
             if(y + block.getY() >= Tetris.BOARD_HEIGHT){
                 y -= (y + block.getY() - Tetris.BOARD_HEIGHT + 1);
+                return true;
+            }
+
+            if(gameBoard[y+block.getY()][x+block.getX()] != null){
+                y--;
                 return true;
             }
         }

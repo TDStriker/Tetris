@@ -6,7 +6,7 @@ public class PieceFactory {
     public static final PieceFactory DEFAULT = new PieceFactory();
 
     public TetrisPiece generatePiece(){
-      int random = (int)(Math.random() * 6);
+      int random = (int)(Math.random() * 7);
       switch(random) {
           case 0:
               return rhodeIsland();

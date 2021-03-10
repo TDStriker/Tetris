@@ -67,43 +67,52 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         timeSinceGravity += timePassed;
 
         if(leftListener.checkAndReset()) {
-            currentPiece.moveHorizontal(-1);
+            currentPiece.moveHorizontal(-1,gameBoard);
             System.out.println("Slide to the Left!");
         }
         if(rightListener.checkAndReset()){
-            currentPiece.moveHorizontal(1);
+            currentPiece.moveHorizontal(1,gameBoard);
             System.out.println("Slide to the Right!");
         }
-        if(upListener.checkAndReset()){
-            currentPiece.moveVertical(-1);
-            System.out.println("Criss-Cross!");
-        }
+//        if(upListener.checkAndReset()){
+//            currentPiece.moveVertical(-1,gameBoard);
+//            System.out.println("Criss-Cross!");
+//        }
         if(downListener.checkAndReset()){
-            currentPiece.moveVertical(1);
+            currentPiece.moveVertical(1,gameBoard);
+
+
             System.out.println("Everybody Clap Yo Hands!");
         }
         if(clockwiseListener.checkAndReset()){
-            currentPiece.rotateClockwise();
+            currentPiece.rotateClockwise(gameBoard);
             System.out.println("Reverse Reverse!");
         }
         if(counterClockwiseListener.checkAndReset()){
-            currentPiece.rotateCounterClockwise();
+            currentPiece.rotateCounterClockwise(gameBoard);
             System.out.println("ChaCha Real Smooth!");
         }
 
-        if(currentPiece.isBlockDead()){
-            Block[] deadBlocks = currentPiece.getTranformBlocks();
-            for(Block block : deadBlocks){
-                gameBoard[block.getY()][block.getX()] = block;
-            }
-            currentPiece = PieceFactory.DEFAULT.generatePiece();
-            currentPiece.setPosition(5, 0);
-        }
-
-//        if(timeSinceGravity >= gravityRefreshRate){
-//            currentPiece.moveVertical(1);
-//            timeSinceGravity = 0;
+//        if(currentPiece.isBlockDead(gameBoard)){
+//            Block[] deadBlocks = currentPiece.getTranformBlocks();
+//            for(Block block : deadBlocks){
+//                gameBoard[block.getY()][block.getX()] = block;
+//            }
+//            currentPiece = PieceFactory.DEFAULT.generatePiece();
+//            currentPiece.setPosition(5, 0);
 //        }
+
+        if(timeSinceGravity >= gravityRefreshRate){
+            if(currentPiece.moveVertical(1, gameBoard)){
+                Block[] deadBlocks = currentPiece.getTranformBlocks();
+                for(Block block : deadBlocks){
+                    gameBoard[block.getY()][block.getX()] = block;
+                }
+                currentPiece = PieceFactory.DEFAULT.generatePiece();
+                currentPiece.setPosition(5, 0);
+            }
+            timeSinceGravity = 0;
+        }
 
         currentPiece.update(timePassed);
     }
