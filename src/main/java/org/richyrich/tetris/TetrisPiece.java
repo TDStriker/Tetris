@@ -22,13 +22,6 @@ public class TetrisPiece implements GameObject {
         this.blocks = blocks;
         this.x = x;
         this.y = y;
-
-        this.width = 0;
-        this.height = 0;
-        for(Block block : blocks){
-            width = Math.max(block.getX(),width);
-            height = Math.max(block.getY(),height);
-        }
     }
 
     public void setPosition(int x, int y){
@@ -84,30 +77,58 @@ public class TetrisPiece implements GameObject {
     }
 
     //       rotate potate -> Wombo Combo
-    public void rotateClockwise(){
-        for(Block block : blocks) {
-            int tempX = block.getX();
-            block.setPosition(block.getY(),2-tempX);
+    public void rotateClockwise(Block[][] gameBoard){
+        Block[] test = blocks;
+
+        boolean rotationValid = true;
+
+        for (Block block : blocks) {
+            rotationValid &= movementValid(gameBoard,x+block.getY(),y+2-block.getX());
         }
 
-        int tempWidth = width;
-        width = height;
-        height = tempWidth;
+        if(rotationValid) {
+            for (Block block : test) {
+                int tempX = block.getX();
+                block.setPosition(block.getY(), 2 - tempX);
+            }
+        }
+//        if(movementValid(gameBoard, test)){
+//            blocks = test;
+//        }
 
-        applyCollision(gameBoard,1);
+//        Block[] prev = blocks;
+//
+//        for(Block block : blocks) {
+//            int tempX = block.getX();
+//            block.setPosition(block.getY(),2-tempX);
+//        }
+//        if(!movementValid(gameBoard)){
+//            for(int i = 0; i < blocks.length; i++){
+//                blocks[i].setPosition(prev[i].getX(),prev[i].getY());
+//            }
+//        }
     }
 
-    public void rotateCounterClockwise(){
-        for(Block block : blocks){
-            int tempX = block.getX();
-            block.setPosition(2-block.getY(), tempX);
+    public void rotateCounterClockwise(Block[][] gameBoard){
+        Block[] prev = blocks;
+        boolean rotationValid = true;
+
+        for (Block block : blocks) {
+            rotationValid &= movementValid(gameBoard,x+2-block.getY(),y+block.getX());
         }
 
-        int tempWidth = width;
-        width = height;
-        height = tempWidth;
+        if(rotationValid) {
+            for (Block block : blocks) {
+                int tempX = block.getX();
 
-        applyCollision(gameBoard,-1);
+                block.setPosition(2 - block.getY(), tempX);
+            }
+        }
+//        if(!movementValid(gameBoard, blocks)){
+//            for(int i = 0; i < blocks.length; i++){
+//                blocks[i].setPosition(prev[i].getX(),prev[i].getY());
+//            }
+//        }
     }
 
     public void applyCollision(){
@@ -125,6 +146,53 @@ public class TetrisPiece implements GameObject {
             }
         }
     }
+
+    public boolean movementValid(Block[][] gameBoard, int x, int y) {
+        if (x < 0) {
+            return false;
+        } else if (x >= Tetris.BOARD_WIDTH) {
+            return false;
+        }
+        if (gameBoard[y][x] != null) {
+            return false;
+        }
+        if (y < 0) {
+            return false;
+        }
+        return true;
+    }
+
+//    public boolean movementValid(Block[][] gameBoard, Block[] blooperyblap){
+//        for(Block block : blooperyblap){
+//            if(x + block.getX() < 0){
+//                return false;
+//            } else if(x + block.getX() >= Tetris.BOARD_WIDTH){
+//                return false;
+//            }
+//            if(gameBoard[y+block.getY()][x+block.getX()] != null){
+//                return false;
+//            }
+//            if(y + block.getY() < 0){
+//                return false;
+//            }
+//        }
+//        return true;
+//
+////        for(Block block : blocks){
+////            if(x + block.getX() < 0){
+////                return false;
+////            } else if(x + block.getX() >= Tetris.BOARD_WIDTH){
+////                return false;
+////            }
+////            if(gameBoard[y+block.getY()][x+block.getX()] != null){
+////                return false;
+////            }
+////            if(y + block.getY() < 0){
+////                return false;
+////            }
+////        }
+////        return true;
+//    }
 
     public boolean isBlockDead(){
         for(Block block : blocks){

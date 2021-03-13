@@ -62,6 +62,23 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         gravityRefreshRate = 1000;
     }
 
+    public void clearRows(){
+        for(int row = 0; row < gameBoard.length; row++){
+            for(int col = 0; col < gameBoard[0].length; col++){
+                if(gameBoard[row][col] == null){
+                    break;
+                }
+                if(col == gameBoard[0].length-1){
+                    for(int i = row-1; i > 1; i--){
+                        for(int j = 0; j < gameBoard[0].length; j++){
+                            gameBoard[i+1][j] = gameBoard[i][j];
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     @Override
     public void update(int timePassed) {
         timeSinceGravity += timePassed;
@@ -113,6 +130,8 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
             }
             timeSinceGravity = 0;
         }
+
+        clearRows();
 
         currentPiece.update(timePassed);
     }

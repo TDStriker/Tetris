@@ -34,18 +34,18 @@ public class PieceFactory {
 
     public TetrisPiece rhodeIsland() {
         Block[] bobby = new Block[4];
-        bobby[0] = new Block(Color.yellow, 0, 0);
+        bobby[0] = new Block(Color.yellow, 2, 0);
         bobby[1] = new Block(Color.yellow, 1, 0);
         bobby[2] = new Block(Color.yellow, 1, 1);
-        bobby[3] = new Block(Color.yellow, 2, 1);
+        bobby[3] = new Block(Color.yellow, 0, 1);
         return new TetrisPiece(bobby);
     }
     public TetrisPiece clevlandZ() {
         Block[] bobby = new Block[4];
-        bobby[0] = new Block(Color.orange, 0, 2);
-        bobby[1] = new Block(Color.orange, 0, 1);
+        bobby[0] = new Block(Color.orange, 0, 0);
+        bobby[1] = new Block(Color.orange, 1, 0);
         bobby[2] = new Block(Color.orange, 1, 1);
-        bobby[3] = new Block(Color.orange, 1, 0);
+        bobby[3] = new Block(Color.orange, 2, 1);
         return new TetrisPiece(bobby);
     }
     public TetrisPiece cube() {
