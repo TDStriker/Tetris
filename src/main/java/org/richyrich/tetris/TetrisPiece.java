@@ -68,7 +68,7 @@ public class TetrisPiece implements GameObject {
 //        }
     }
 
-    public void moveVertical(int magnitude){
+    public boolean moveVertical(int magnitude, Block[][] gameBoard){
         y+=magnitude;
         return isBlockDead(gameBoard);
 //        if(y < 0) {
@@ -133,7 +133,7 @@ public class TetrisPiece implements GameObject {
 //        }
     }
 
-    public void applyCollision(){
+    public void applyCollision(Block[][] gameBoard, int magnidude){
         for(Block block : blocks){
             if(x + block.getX() < 0){
                 x += -(x + block.getX());
@@ -205,7 +205,10 @@ public class TetrisPiece implements GameObject {
 ////        return true;
 //    }
 
-    public boolean isBlockDead(){
+
+
+    // Spaghetti Time come on grab your friends
+    public boolean isBlockDead(Block[][] gameBoard){
         for(Block block : blocks){
             if(y + block.getY() >= Tetris.BOARD_HEIGHT){
                 y -= (y + block.getY() - Tetris.BOARD_HEIGHT + 1);
@@ -223,7 +226,7 @@ public class TetrisPiece implements GameObject {
     @Override
     public void update(int timePassed) {
         if(colorChanging){
-            Color color = new Color((int)(Math.random()*128)+128,(int)(Math.random()*128)+128,(int)(Math.random()*128)+128);
+            Color color = new Color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
             for(Block block : blocks){
                 block.setColor(color);
             }
