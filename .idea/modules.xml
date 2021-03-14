@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Tetris.iml" filepath="$PROJECT_DIR$/.idea/modules/Tetris.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Tetris.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Tetris.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Tetris.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Tetris.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Pac-Man.iml" filepath="$PROJECT_DIR$/.idea/modules/Pac-Man.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Pac-Man.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Pac-Man.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Pac-Man.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Pac-Man.test.iml" />
     </modules>
   </component>
 </project>

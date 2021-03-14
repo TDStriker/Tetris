@@ -1,4 +1,4 @@
-package org.richyrich.tetris;
+package org.richyrich.tetris.utilities;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

@@ -1,5 +1,8 @@
 package org.richyrich.tetris;
 
+import org.richyrich.tetris.utilities.KeyboardListener;
+import org.richyrich.tetris.utilities.TetrisSettings;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -13,27 +16,29 @@ public class Tetris extends JFrame {
 
     public static BufferedImage bimg;
 
-    final Dimension dim = new Dimension(600, 600);
     final Canvas renderySpot;
+
 
     final KeyboardListener keyInput = new KeyboardListener();
 
 
-    final SpinnyText brian = new SpinnyText(dim.height / 2, dim.width / 2, 5, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
-        new Font("ROG Fonts", (Font.ITALIC), 20), dim);
-    final SpinnyText gregory = new SpinnyText(dim.height / 2, dim.width / 2, 1, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
-        new Font("Curlz MT", (Font.ITALIC), 20), dim);
-    final SpinnyText jim = new SpinnyText(dim.height / 2 + 10, dim.width / 2 + 10, 0.5f, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
-        new Font("Comic Sans MS", (Font.ITALIC), 20), dim);
+    final SpinnyText brian = new SpinnyText(TetrisSettings.DIM.height / 2, TetrisSettings.DIM.width / 2, 5, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
+        new Font("ROG Fonts", (Font.ITALIC), 20), TetrisSettings.DIM);
+    final SpinnyText gregory = new SpinnyText(TetrisSettings.DIM.height / 2, TetrisSettings.DIM.width / 2, 1, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
+        new Font("Curlz MT", (Font.ITALIC), 20), TetrisSettings.DIM);
+    final SpinnyText jim = new SpinnyText(TetrisSettings.DIM.height / 2 + 10, TetrisSettings.DIM.width / 2 + 10, 0.5f, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
+        new Font("Comic Sans MS", (Font.ITALIC), 20), TetrisSettings.DIM);
     final SpinnyText phil = new SpinnyText(0, 0, -2, (float)Math.PI, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
-        new Font("Verdana", (Font.ITALIC), 20), dim);
+        new Font("Verdana", (Font.ITALIC), 20), TetrisSettings.DIM);
     final SpinnyText roderick = new SpinnyText(0, 0, -2, (float)Math.PI, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
-        new Font("Jazz LET", (Font.ITALIC), 20), dim);
+        new Font("Jazz LET", (Font.ITALIC), 20), TetrisSettings.DIM);
+
+    final SpinnyText endgameText = new SpinnyText(TetrisSettings.DIM.height / 2, TetrisSettings.DIM.width / 2, 0, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
+        new Font("ROG Fonts", (Font.ITALIC), 20), TetrisSettings.DIM);
 
     final SpinnyText[] theBoyz = {brian, gregory, jim, phil, roderick};
 
     ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen gameBoard;
-    CrystalCube fortuneTeller;
 
     final Color backColor;
 
@@ -45,9 +50,9 @@ public class Tetris extends JFrame {
         }
 
         renderySpot = new Canvas();
-        renderySpot.setMinimumSize(dim);
-        renderySpot.setMaximumSize(dim);
-        renderySpot.setPreferredSize(dim);
+        renderySpot.setMinimumSize(TetrisSettings.DIM);
+        renderySpot.setMaximumSize(TetrisSettings.DIM);
+        renderySpot.setPreferredSize(TetrisSettings.DIM);
 
         this.add(renderySpot);
         this.setResizable(false);
@@ -82,8 +87,7 @@ public class Tetris extends JFrame {
         this.renderySpot.addKeyListener(keyInput);
         TetrisSettings.setCanvas(this.renderySpot);
 
-        gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(0, 0, dim.width/2, dim.height);
-        fortuneTeller = new CrystalCube(dim.width/2, dim.height/2, dim.width/2, dim.height/2);
+        gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(0, 0, TetrisSettings.DIM.width/2, TetrisSettings.DIM.height);
 
         final Thread gameThread = new Thread(this::gameLoop);
         gameThread.setDaemon(true);
@@ -91,39 +95,43 @@ public class Tetris extends JFrame {
     }
 
     private void gameLoop() {
-        while (true) {
-            long startTime = System.currentTimeMillis();
+        while(true) {
+            while (gameBoard.isGameRunning()) {
+                long startTime = System.currentTimeMillis();
 
-            updateGameState();
-            renderGame();
+                updateGameState();
+                renderGame();
 
-            try {
-                Thread.sleep(Math.max(0, 10 - (System.currentTimeMillis() - startTime)));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                try {
+                    Thread.sleep(Math.max(0, 10 - (System.currentTimeMillis() - startTime)));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+            endgameText.update(10, "You Lose");
+            renderGame();
         }
     }
 
     private void updateGameState() {
 //        brian.update(10, keyInput.getInput());
         gameBoard.update(10);
-        fortuneTeller.update(10);
 
-        for(SpinnyText madlad : theBoyz){
-            madlad.update(10, keyInput.getInput());
-        }
+//        for(SpinnyText madlad : theBoyz){
+//            madlad.update(10, keyInput.getInput());
+//        }
     }
 
     private void renderGame() {
         final Graphics2D g = (Graphics2D) renderySpot.getBufferStrategy().getDrawGraphics();
         g.setColor(backColor);
         //g.drawImage(bimg, 0, 0, dim.width, dim.height, null, null);
-        g.fillRect(0,0, dim.width, dim.height);
+        g.fillRect(0,0, TetrisSettings.DIM.width, TetrisSettings.DIM.height);
 
         g.setColor(new Color((int)(Math.random()*128) + 128,(int)(Math.random()*128) + 128,(int)(Math.random()*128) + 128));
         gameBoard.render(g);
-        fortuneTeller.render(g);
+
+        endgameText.render(g);
 
 //        brian.render(g);
 //        jim.render(g);
@@ -131,9 +139,9 @@ public class Tetris extends JFrame {
 //        gregory.render(g);
 //        roderick.render(g);
 
-        for(SpinnyText madlad : theBoyz){
-            madlad.render(g);
-        }
+//        for(SpinnyText madlad : theBoyz){
+//            madlad.render(g);
+//        }
 
         renderySpot.getBufferStrategy().show();
     }

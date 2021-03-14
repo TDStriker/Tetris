@@ -1,5 +1,8 @@
 package org.richyrich.tetris;
 
+import org.richyrich.tetris.utilities.ResettableKeyHandler;
+import org.richyrich.tetris.utilities.TetrisSettings;
+
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
@@ -18,6 +21,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
     private int y;
     private int border = 4;
     private int heightOffset;
+    private boolean gameRunning;
     private Block[][] gameBoard = new Block[Tetris.BOARD_HEIGHT][Tetris.BOARD_WIDTH];
     private TetrisPiece currentPiece;
 
@@ -34,6 +38,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
     private int gravityRefreshRate;
 
     public ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(int x, int y, int maxBoardWidth, int maxBoardHeight){
+        this.gameRunning = true;
         this.maxBoardWidth = maxBoardWidth;
         this.maxBoardHeight = maxBoardHeight;
         TetrisSettings.SQUARE_LENGTH = Math.min(((maxBoardWidth-(border*2))/10), ((maxBoardHeight-(border*2))/20));
@@ -73,6 +78,9 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
                         for(int j = 0; j < gameBoard[0].length; j++){
                             gameBoard[i+1][j] = gameBoard[i][j];
                         }
+                    }
+                    if(gravityRefreshRate > 250){
+                        gravityRefreshRate -= 10;
                     }
                 }
             }
@@ -125,8 +133,11 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
                 for(Block block : deadBlocks){
                     gameBoard[block.getY()][block.getX()] = block;
                 }
-                currentPiece = PieceFactory.DEFAULT.generatePiece();
+                currentPiece = fortuneTeller.getUpcomingPiece();
                 currentPiece.setPosition(5, 0);
+                if(!currentPiece.positionValid(gameBoard)){
+                    gameRunning = false;
+                }
             }
             timeSinceGravity = 0;
         }
@@ -134,6 +145,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         clearRows();
 
         currentPiece.update(timePassed);
+        fortuneTeller.update(timePassed);
     }
 
     @Override
@@ -163,5 +175,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         currentPiece.render(g);
 
         g.setTransform(old);
+
+        fortuneTeller.render(g);
     }
 }

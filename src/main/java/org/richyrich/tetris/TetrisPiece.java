@@ -1,5 +1,7 @@
 package org.richyrich.tetris;
 
+import org.richyrich.tetris.utilities.TetrisSettings;
+
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
@@ -162,6 +164,15 @@ public class TetrisPiece implements GameObject {
         return true;
     }
 
+    public boolean positionValid(Block[][] gameBoard){
+        for(Block block : blocks){
+            if(!movementValid(gameBoard, x+block.getX(), y+block.getY())){
+                return false;
+            }
+        }
+        return true;
+    }
+
 //    public boolean movementValid(Block[][] gameBoard, Block[] blooperyblap){
 //        for(Block block : blooperyblap){
 //            if(x + block.getX() < 0){
@@ -223,7 +234,7 @@ public class TetrisPiece implements GameObject {
     public void render(Graphics2D g) {
         AffineTransform old = g.getTransform();
 
-        g.translate(x*TetrisSettings.SQUARE_LENGTH, y*TetrisSettings.SQUARE_LENGTH);
+        g.translate(x* TetrisSettings.SQUARE_LENGTH, y*TetrisSettings.SQUARE_LENGTH);
         for(Block block : blocks){
             block.render(g);
         }

@@ -1,5 +1,7 @@
 package org.richyrich.tetris;
 
+import org.richyrich.tetris.utilities.TetrisSettings;
+
 import java.awt.*;
 
 public class Block implements GameObject{
