@@ -16,6 +16,8 @@ public class CrystalCube implements GameObject { //The Crystal Cube //<----(The 
     private int y;
     private int border = 4;
 
+    private TetrisPiece[] approachingPieces;
+
     public CrystalCube(int x, int y, int maxOracleWidth, int maxOracleHeight){
         this.maxOracleWidth = maxOracleWidth - 4*border;
         this.maxOracleHeight = (int)(maxOracleHeight - 1.5*border);

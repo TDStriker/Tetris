@@ -78,7 +78,7 @@ public class TetrisPiece implements GameObject {
 //        }
     }
 
-    //       rotate potate -> Wombo Combo
+    //          rotate potate -> Wombo Combo
     public void rotateClockwise(Block[][] gameBoard){
         Block[] test = blocks;
 
