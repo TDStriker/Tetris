@@ -30,6 +30,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
     private boolean gameRunning;
     private Block[][] gameBoard = new Block[Tetris.BOARD_HEIGHT][Tetris.BOARD_WIDTH];
     private TetrisPiece currentPiece;
+    CrystalCube fortuneTeller;
 
     private ResettableKeyHandler leftListener;
     private ResettableKeyHandler rightListener;
@@ -55,6 +56,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
 
         Block[] blocks = new Block[]{new Block(Color.red, 0, 0), new Block(Color.red, 1, 0), new Block(Color.red, 0, 1), new Block(Color.red, 2, 0)};
         this.currentPiece = new TetrisPiece(blocks, 5, 5);
+        this.fortuneTeller = new CrystalCube(TetrisSettings.DIM.width/2, TetrisSettings.DIM.height - TetrisSettings.SQUARE_LENGTH*12, TetrisSettings.DIM.width/2, TetrisSettings.SQUARE_LENGTH*12);
 
         this.leftListener = new ResettableKeyHandler(TetrisSettings.LEFT_KEY);
         this.rightListener = new ResettableKeyHandler(TetrisSettings.RIGHT_KEY);
@@ -91,6 +93,10 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
                 }
             }
         }
+    }
+
+    public boolean isGameRunning() {
+        return gameRunning;
     }
 
     @Override

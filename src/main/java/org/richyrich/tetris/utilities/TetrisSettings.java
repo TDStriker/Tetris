@@ -1,4 +1,4 @@
-package org.richyrich.tetris;
+package org.richyrich.tetris.utilities;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 
 public class TetrisSettings {
     public static int SQUARE_LENGTH = 25;
+
+    public static Dimension DIM = new Dimension(600, 600);
 
     public static Canvas CANVAS;
 
