@@ -11,6 +11,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class Tetris extends JFrame {
+
+    private GameStates gameState;
+
     final static int BOARD_WIDTH = 10;
     final static int BOARD_HEIGHT = 20;
 
@@ -69,6 +72,7 @@ public class Tetris extends JFrame {
 
     private void start() {
         // set the look and feel to the system look and feel
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
