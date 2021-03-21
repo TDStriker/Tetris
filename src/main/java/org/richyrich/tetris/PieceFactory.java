@@ -27,9 +27,9 @@ public class PieceFactory {
               return triangleTryhard();
 
           case 6:
-              return stick();
+              return holyEye();
         }
-        return stick();
+        return holyEye();
     }
 
     public TetrisPiece rhodeIsland() {
@@ -82,12 +82,14 @@ public class PieceFactory {
         bobby[3] = new Block(Color.blue, 2, 1);
         return new TetrisPiece(bobby);
     }
-    public TetrisPiece stick() {
+    public TetrisPiece holyEye() {
         Block[] bobby = new Block[4];
         bobby[0] = new Block(Color.red, 0, 0);
         bobby[1] = new Block(Color.red, 0, 1);
         bobby[2] = new Block(Color.red, 0, 2);
         bobby[3] = new Block(Color.red, 0, 3);
-        return new TetrisPiece(bobby);
+        TetrisPiece Robert = new TetrisPiece(bobby);
+        Robert.setGradient(true);
+        return Robert;
     }
 }

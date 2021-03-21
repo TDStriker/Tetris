@@ -13,6 +13,9 @@ public class TetrisPiece implements GameObject {
     int height;
 
     boolean colorChanging = false;
+    boolean gradient = false;
+
+    int rgbIndex = 0;
 
     Block[] blocks;
 
@@ -33,6 +36,10 @@ public class TetrisPiece implements GameObject {
 
     public void setColorChanging(boolean colorChanging){
         this.colorChanging = colorChanging;
+    }
+
+    public void setGradient(boolean gradient){
+        this.gradient = gradient;
     }
 
     public Block[] getTranformBlocks(){
@@ -231,7 +238,52 @@ public class TetrisPiece implements GameObject {
                 block.setColor(color);
             }
         }
-    }
+        //marron es un color hermoso. Es muy malo excluir el marron!!!!!!!!!!
+        // no
+        // si, me encanta marron
+        if(gradient){
+            Color temp = blocks[0].getColor();
+            int[] rgb = {temp.getRed(),temp.getGreen(),temp.getBlue()};
+
+            if(rgb[(rgbIndex+1 > 2 ? 0 : rgbIndex+1)] < 255){
+                rgb[(rgbIndex+1 > 2 ? 0 : rgbIndex+1)]++;
+            }else{
+                if(rgb[rgbIndex] > 0){
+                    rgb[rgbIndex]--;
+                }else{
+                    rgbIndex = (rgbIndex+1 > 2 ? 0 : rgbIndex+1);
+                }
+            }
+
+//            if(rgb[0] > 0){
+//                if(rgb[2] > 0){
+//                    if(rgb[0]==255) {
+//                        rgb[2]--;
+//                    }else{
+//                        rgb[0]++;
+//                    }
+//                }else if(rgb[1] == 255){
+//                    rgb[0]--;
+//                }else{
+//                    rgb[1]++;
+//                }
+//            }else if(rgb[1] > 0){
+//                if(rgb[2] > 0){
+//                    if(rgb[2]==255) {
+//                        rgb[1]--;
+//                    }else{
+//                        rgb[2]++;
+//                    }
+//                }
+//            }
+
+            for(Block block : blocks){
+                block.setColor(new Color(rgb[0], rgb[1], rgb[2]));
+            }
+
+            }
+        }
+
 
     @Override
     public void render(Graphics2D g) {

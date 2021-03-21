@@ -8,7 +8,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="Pac-Man.main" />
+    <orderEntry type="module" module-name="Tetrathingamagoddius.main" />
     <orderEntry type="library" name="Gradle: com.google.guava:guava:29.0-jre" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.13" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:failureaccess:1.0.1" level="project" />

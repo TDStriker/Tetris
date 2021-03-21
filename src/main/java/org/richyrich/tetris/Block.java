@@ -33,6 +33,10 @@ public class Block implements GameObject{
         this.color = color;
     }
 
+    public Color getColor(){
+        return color;
+    }
+
     public int getX(){
         return x;
     }

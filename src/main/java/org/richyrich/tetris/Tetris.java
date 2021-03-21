@@ -21,6 +21,8 @@ public class Tetris extends JFrame {
 
     final KeyboardListener keyInput = new KeyboardListener();
 
+    final MainMenu menu = new MainMenu();
+
 
     final SpinnyText brian = new SpinnyText(TetrisSettings.DIM.height / 2, TetrisSettings.DIM.width / 2, 5, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
         new Font("ROG Fonts", (Font.ITALIC), 20), TetrisSettings.DIM);
@@ -89,9 +91,51 @@ public class Tetris extends JFrame {
 
         gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(0, 0, TetrisSettings.DIM.width/2, TetrisSettings.DIM.height);
 
-        final Thread gameThread = new Thread(this::gameLoop);
+        gameState = GameStates.MAIN_MENU;
+
+        final Thread gameThread = new Thread(this::runProgram);
         gameThread.setDaemon(true);
         gameThread.start();
+    }
+
+    private void runProgram(){
+        while(true){
+            switch (gameState){
+                case MAIN_MENU:
+                    runMenu();
+                    break;
+
+                case TETRAS:
+                    gameLoop();
+                    break;
+
+                case GAME_MODIFIERS:
+                    //More cr*p
+                    break;
+
+                case SCOREBOARD:
+                    // %*^#@! Caitlin
+                    break;
+                    //sh*te
+                    //L*NGUAGE!!!!!!!!!!
+                case SETTINGS:
+                    //P** P**
+                    break;
+
+                default:
+                    gameLoop();
+                    break;
+            }
+        }
+    }
+
+    private void runMenu(){
+        while(!false) {
+            updateMenu();
+            renderMenu();
+//            break;
+        }
+//        gameState = GameStates.TETRAS;
     }
 
     private void gameLoop() {
@@ -111,6 +155,21 @@ public class Tetris extends JFrame {
             endgameText.update(10, "You Lose");
             renderGame();
         }
+    }
+
+    private void updateMenu(){
+        menu.update(10);
+    }
+   //!muy bien!
+    private void renderMenu(){
+        final Graphics2D g = (Graphics2D) renderySpot.getBufferStrategy().getDrawGraphics();
+        g.setColor(backColor);
+        g.drawImage(bimg, 0, 0, TetrisSettings.DIM.width, TetrisSettings.DIM.height, null, null);
+//        g.fillRect(0,0, TetrisSettings.DIM.width, TetrisSettings.DIM.height);
+
+        menu.render(g);
+
+        renderySpot.getBufferStrategy().show();
     }
 
     private void updateGameState() {

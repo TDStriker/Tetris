@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Pac-Man.iml" filepath="$PROJECT_DIR$/.idea/modules/Pac-Man.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Pac-Man.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Pac-Man.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Pac-Man.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Pac-Man.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Tetrathingamagoddius.iml" filepath="$PROJECT_DIR$/.idea/modules/Tetrathingamagoddius.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Tetrathingamagoddius.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Tetrathingamagoddius.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Tetrathingamagoddius.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Tetrathingamagoddius.test.iml" />
     </modules>
   </component>
 </project>
