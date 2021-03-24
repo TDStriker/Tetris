@@ -1,6 +1,7 @@
 package org.richyrich.tetris;
 
 import org.richyrich.tetris.utilities.KeyboardListener;
+import org.richyrich.tetris.utilities.MouseClickListener;
 import org.richyrich.tetris.utilities.TetrisSettings;
 
 import javax.imageio.ImageIO;
@@ -23,8 +24,9 @@ public class Tetris extends JFrame {
 
 
     final KeyboardListener keyInput = new KeyboardListener();
+    final MouseClickListener mouseInput = new MouseClickListener();
 
-    final MainMenu menu = new MainMenu();
+    final MainMenu menu = new MainMenu(mouseInput);
 
 
     final SpinnyText brian = new SpinnyText(TetrisSettings.DIM.height / 2, TetrisSettings.DIM.width / 2, 5, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
@@ -91,6 +93,7 @@ public class Tetris extends JFrame {
         // I am a pretty pretty princess.  Pleas someone write some code
         // Please. Thank you.
         this.renderySpot.addKeyListener(keyInput);
+        this.renderySpot.addMouseListener(mouseInput);
         TetrisSettings.setCanvas(this.renderySpot);
 
         gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(0, 0, TetrisSettings.DIM.width/2, TetrisSettings.DIM.height);
@@ -137,6 +140,10 @@ public class Tetris extends JFrame {
         while(!false) {
             updateMenu();
             renderMenu();
+
+            if(menu.isGameStarted()){
+                gameState = GameStates.TETRAS;
+            }
 //            break;
         }
 //        gameState = GameStates.TETRAS;

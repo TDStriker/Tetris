@@ -14,7 +14,7 @@ public class KeyboardListener extends KeyAdapter {
             input += event.getKeyChar();
         } else if(inputCode == KeyEvent.VK_BACK_SPACE && (input.length() != 0)){
             input = input.substring(0,input.length()-1);
-        //  input = input.substring(0,input.length()-((input.length() == 0): 0, 1));
+            //  input = input.substring(0,input.length()-((input.length() == 0): 0, 1));
         }
     }
 
