@@ -19,6 +19,7 @@ public class Tetris extends JFrame {
     final static int BOARD_HEIGHT = 20;
 
     public static BufferedImage bimg;
+    public static BufferedImage baton;
 
     final Canvas renderySpot;
 
@@ -55,6 +56,13 @@ public class Tetris extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+       /**
+         try {
+            baton = ImageIO.read(new File("src/main/res/baton.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        **/
 
         renderySpot = new Canvas();
         renderySpot.setMinimumSize(TetrisSettings.DIM);
