@@ -17,10 +17,6 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
      */
 
 
-    // What Data do you need?
-    // Hint:  Where is this thing?  How big is it?
-//    private int squareLength = 25;
-//
     private int maxBoardWidth;
     private int maxBoardHeight;
     private int x;
