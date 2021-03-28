@@ -10,9 +10,6 @@ public class TetrisPiece implements GameObject {
     int x;
     int y;
 
-    int width;
-    int height;
-
     boolean colorChanging = false;
     boolean gradient = false;
 
@@ -66,24 +63,11 @@ public class TetrisPiece implements GameObject {
 
         applyCollision(gameBoard, magnitude);
 
-//        // Check our bounds
-//        if(x < 0) {
-//            // Naw bro, off the left
-//            x = 0;
-//        } else if(x + width >= Tetris.BOARD_WIDTH) {
-//            // Naw bro, off the right.
-//            x = Tetris.BOARD_WIDTH - width - 1;
-//        }
     }
 
     public boolean moveVertical(int magnitude, Block[][] gameBoard){
         y+=magnitude;
         return isBlockDead(gameBoard);
-//        if(y < 0) {
-//            y = 0;
-//        } else if(y + height >= Tetris.BOARD_HEIGHT) {
-//            y = Tetris.BOARD_HEIGHT - height - 1;
-//        }
     }
 
     //          rotate potate -> Wombo Combo
@@ -102,21 +86,7 @@ public class TetrisPiece implements GameObject {
                 block.setPosition(block.getY(), 2 - tempX);
             }
         }
-//        if(movementValid(gameBoard, test)){
-//            blocks = test;
-//        }
 
-//        Block[] prev = blocks;
-//
-//        for(Block block : blocks) {
-//            int tempX = block.getX();
-//            block.setPosition(block.getY(),2-tempX);
-//        }
-//        if(!movementValid(gameBoard)){
-//            for(int i = 0; i < blocks.length; i++){
-//                blocks[i].setPosition(prev[i].getX(),prev[i].getY());
-//            }
-//        }
     }
 
     public void rotateCounterClockwise(Block[][] gameBoard){
@@ -176,41 +146,7 @@ public class TetrisPiece implements GameObject {
         }
         return true;
     }
-
-//    public boolean movementValid(Block[][] gameBoard, Block[] blooperyblap){
-//        for(Block block : blooperyblap){
-//            if(x + block.getX() < 0){
-//                return false;
-//            } else if(x + block.getX() >= Tetris.BOARD_WIDTH){
-//                return false;
-//            }
-//            if(gameBoard[y+block.getY()][x+block.getX()] != null){
-//                return false;
-//            }
-//            if(y + block.getY() < 0){
-//                return false;
-//            }
-//        }
-//        return true;
-//
-////        for(Block block : blocks){
-////            if(x + block.getX() < 0){
-////                return false;
-////            } else if(x + block.getX() >= Tetris.BOARD_WIDTH){
-////                return false;
-////            }
-////            if(gameBoard[y+block.getY()][x+block.getX()] != null){
-////                return false;
-////            }
-////            if(y + block.getY() < 0){
-////                return false;
-////            }
-////        }
-////        return true;
-//    }
-
-
-
+    //IMPORTANT LORE: blooberyblab
     // Spaghetti Time come on grab your friends
     public boolean isBlockDead(Block[][] gameBoard){
         for(Block block : blocks){
