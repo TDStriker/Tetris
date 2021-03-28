@@ -107,31 +107,24 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
 
         if(leftListener.checkAndReset()) {
             currentPiece.moveHorizontal(-1,gameBoard);
-            System.out.println("Slide to the Left!");
+            /** System.out.println("Slide to the Left!"); **/
         }
         if(rightListener.checkAndReset()){
             currentPiece.moveHorizontal(1,gameBoard);
-            System.out.println("Slide to the Right!");
+            /** System.out.println("Slide to the Right!"); **/
         }
-//        if(upListener.checkAndReset()){
-//            currentPiece.moveVertical(-1,gameBoard);
-//            System.out.println("Criss-Cross!");
-//        }
         if(downListener.checkAndReset()){
             currentPiece.moveVertical(1,gameBoard);
-
-
-            System.out.println("Everybody Clap Yo Hands!");
+            /** System.out.println("Everybody Clap Yo Hands!"); **/
         }
         if(clockwiseListener.checkAndReset()){
             currentPiece.rotateClockwise(gameBoard);
-            System.out.println("Reverse Reverse!");
+            /** System.out.println("Reverse Reverse!"); **/
         }
         if(counterClockwiseListener.checkAndReset()){
             currentPiece.rotateCounterClockwise(gameBoard);
-            System.out.println("ChaCha Real Smooth!");
+            /** System.out.println("ChaCha Real Smooth!"); **/
         }
-
 
         if(timeSinceGravity >= gravityRefreshRate){
             if(currentPiece.moveVertical(1, gameBoard)){
@@ -165,8 +158,6 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
 
         for(int i = 0; i < gameBoard.length; i++){
             for(int j = 0; j < gameBoard[0].length; j++){
-//                g.drawRect(x + j*SQUARE_LENGTH, y+i*SQUARE_LENGTH, SQUARE_LENGTH, SQUARE_LENGTH);
-//                g.drawImage(Tetris.bimg, x + j*squareLength, y+i*squareLength, squareLength, squareLength, null, null);
                 if(gameBoard[i][j] != null){
                     gameBoard[i][j].setPosition(j, i);
                     gameBoard[i][j].render(g);
