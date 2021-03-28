@@ -1,60 +1,49 @@
 package org.richyrich.tetris;
 
-import org.richyrich.tetris.utilities.MouseClickListener;
-import org.richyrich.tetris.utilities.TetrisSettings;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class MainMenu {
+public class MainMenu implements ActionListener{
     JButton startButton;
     ImageIcon buttonBg;
-    MouseClickListener listener;
 
     private boolean isGameStarted;
 
-    public MainMenu(MouseClickListener listener) {
+    public MainMenu(JFrame frame) {
         buttonBg = new ImageIcon("src/main/res/baton.png");
         isGameStarted = false;
-        this.listener = listener;
-
 
         startButton = new JButton("Start", buttonBg);
         startButton.setHorizontalTextPosition(SwingConstants.CENTER);
 
-        startButton.setBounds(0,0,300,150);
-//        startGame.setSize(100,50);
+        startButton.setBounds(150,200,300,150);
         startButton.setActionCommand("Start");
 
         startButton.setBackground(Color.red);
+        startButton.setFocusable(false);
 
-        startButton.addMouseListener(listener);
-    }
+        startButton.addActionListener(this);
 
-    public void actionPerformed() {
-        try {
-
-            if (startButton.equals(listener.getClickOrigin())) {
-                System.out.println("hello");
-            } else {
-//            System.out.println("rude");
-            }
-        }catch(NullPointerException npe){
-
-        }
+        frame.add(startButton);
     }
 
     public boolean isGameStarted(){
-        return false;
+        return isGameStarted;
     }
 
-    public void update(int timePassed) {
-        actionPerformed();
-    }
+    public void update(int timePassed) {}
 
-    public void render(Graphics2D g) {
-        startButton.paint(g);
-        startButton.setVisible(true);
+    public void render(Graphics2D g) {}
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if ("Start".equals(e.getActionCommand())) {
+            System.out.println("STARTED");
+            isGameStarted = true;
+            startButton.setVisible(false);
+        }else{
+            System.out.println("No");
+        }
     }
 }

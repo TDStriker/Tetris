@@ -1,5 +1,6 @@
 package org.richyrich.tetris;
 
+import org.richyrich.tetris.utilities.CustomColor;
 import org.richyrich.tetris.utilities.TetrisSettings;
 
 import java.awt.*;
@@ -255,35 +256,14 @@ public class TetrisPiece implements GameObject {
                 }
             }
 
-//            if(rgb[0] > 0){
-//                if(rgb[2] > 0){
-//                    if(rgb[0]==255) {
-//                        rgb[2]--;
-//                    }else{
-//                        rgb[0]++;
-//                    }
-//                }else if(rgb[1] == 255){
-//                    rgb[0]--;
-//                }else{
-//                    rgb[1]++;
-//                }
-//            }else if(rgb[1] > 0){
-//                if(rgb[2] > 0){
-//                    if(rgb[2]==255) {
-//                        rgb[1]--;
-//                    }else{
-//                        rgb[2]++;
-//                    }
-//                }
-//            }
-
             for(Block block : blocks){
                 block.setColor(new Color(rgb[0], rgb[1], rgb[2]));
+//                block.setColor((block.getColor()));
+//                ((CustomColor)block.getColor()).applyGradient();
             }
 
-            }
         }
-
+    }
 
     @Override
     public void render(Graphics2D g) {

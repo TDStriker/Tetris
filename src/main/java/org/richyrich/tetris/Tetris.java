@@ -27,7 +27,8 @@ public class Tetris extends JFrame {
     final KeyboardListener keyInput = new KeyboardListener();
     final MouseClickListener mouseInput = new MouseClickListener();
 
-    final MainMenu menu = new MainMenu(mouseInput);
+
+    final MainMenu menu = new MainMenu(this);
 
 
     final SpinnyText brian = new SpinnyText(TetrisSettings.DIM.height / 2, TetrisSettings.DIM.width / 2, 5, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
@@ -121,6 +122,7 @@ public class Tetris extends JFrame {
                     break;
 
                 case TETRAS:
+                    gameBoard.start();
                     gameLoop();
                     break;
 
@@ -150,7 +152,9 @@ public class Tetris extends JFrame {
             renderMenu();
 
             if(menu.isGameStarted()){
+                System.out.println("Do the thing yo");
                 gameState = GameStates.TETRAS;
+                break;
             }
 //            break;
         }

@@ -5,20 +5,20 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class MouseClickListener implements MouseListener {
-    Object origin;
+    String origin;
 
-    public Object getClickOrigin(){
+    public String getClickOrigin(){
         return origin;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        origin = e.getSource();
+        origin = e.getComponent().getName();
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        origin = e.getComponent().getName();
     }
 
     @Override
@@ -28,7 +28,7 @@ public class MouseClickListener implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        origin = e.getComponent().getName();
     }
 
     @Override

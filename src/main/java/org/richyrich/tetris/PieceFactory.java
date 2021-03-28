@@ -1,5 +1,7 @@
 package org.richyrich.tetris;
 
+import org.richyrich.tetris.utilities.CustomColor;
+
 import java.awt.Color;
 
 public class PieceFactory {
@@ -84,10 +86,10 @@ public class PieceFactory {
     }
     public TetrisPiece holyEye() {
         Block[] bobby = new Block[4];
-        bobby[0] = new Block(Color.red, 0, 0);
-        bobby[1] = new Block(Color.red, 0, 1);
-        bobby[2] = new Block(Color.red, 0, 2);
-        bobby[3] = new Block(Color.red, 0, 3);
+        bobby[0] = new Block(new CustomColor(255,0,0), 0, 0);
+        bobby[1] = new Block(new CustomColor(255,0,0), 0, 1);
+        bobby[2] = new Block(new CustomColor(255,0,0), 0, 2);
+        bobby[3] = new Block(new CustomColor(255,0,0), 0, 3);
         TetrisPiece Robert = new TetrisPiece(bobby);
         Robert.setGradient(true);
         return Robert;
