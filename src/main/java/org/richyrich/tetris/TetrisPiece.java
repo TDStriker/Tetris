@@ -134,11 +134,7 @@ public class TetrisPiece implements GameObject {
                 block.setPosition(2 - block.getY(), tempX);
             }
         }
-//        if(!movementValid(gameBoard, blocks)){
-//            for(int i = 0; i < blocks.length; i++){
-//                blocks[i].setPosition(prev[i].getX(),prev[i].getY());
-//            }
-//        }
+
     }
 
     public void applyCollision(Block[][] gameBoard, int magnidude){

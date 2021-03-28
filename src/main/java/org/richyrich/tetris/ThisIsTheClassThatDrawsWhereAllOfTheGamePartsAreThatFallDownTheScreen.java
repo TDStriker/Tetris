@@ -136,14 +136,6 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
             System.out.println("ChaCha Real Smooth!");
         }
 
-//        if(currentPiece.isBlockDead(gameBoard)){
-//            Block[] deadBlocks = currentPiece.getTranformBlocks();
-//            for(Block block : deadBlocks){
-//                gameBoard[block.getY()][block.getX()] = block;
-//            }
-//            currentPiece = PieceFactory.DEFAULT.generatePiece();
-//            currentPiece.setPosition(5, 0);
-//        }
 
         if(timeSinceGravity >= gravityRefreshRate){
             if(currentPiece.moveVertical(1, gameBoard)){
@@ -169,16 +161,12 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
     @Override
     public void render(Graphics2D g) {
         AffineTransform old = g.getTransform();
-        // Draw the rectangle for the board
-        // Use the documentation to figure out what you need.
-        //do we know the dimensions of our board yet,  No.  You will need to pass it in from somewhere
-        // You can do it via constructor, or a set of "setter" methods
 
         g.translate(border*2, heightOffset);
         g.setStroke(new BasicStroke (border));
         g.drawRect(x, y, ((TetrisSettings.SQUARE_LENGTH*10) + 2 * border), ((TetrisSettings.SQUARE_LENGTH*20)+ 2 * border));
         g.translate(border, border);
-        // Draw a temporary grid of spaces where the blocks will go
+
         for(int i = 0; i < gameBoard.length; i++){
             for(int j = 0; j < gameBoard[0].length; j++){
 //                g.drawRect(x + j*SQUARE_LENGTH, y+i*SQUARE_LENGTH, SQUARE_LENGTH, SQUARE_LENGTH);
