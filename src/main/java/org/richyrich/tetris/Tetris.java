@@ -64,13 +64,14 @@ public class Tetris extends JFrame {
         new Font("Jazz LET", (Font.ITALIC), 20), TetrisSettings.DIM);
 
     final SpinnyText endgameText = new SpinnyText(TetrisSettings.DIM.height / 2, TetrisSettings.DIM.width / 2, 0, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
-        new Font("ROG Fonts", (Font.ITALIC), 20), TetrisSettings.DIM);
+        new Font("ROG Fonts", (Font.ITALIC), 30), TetrisSettings.DIM);
 
     final SpinnyText[] theBoyz = {brian, gregory, jim, phil, roderick};
 
     ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen gameBoard;
 
-    final Color backColor;
+    Color backColor;
+
 
     private Tetris() {
         try {
@@ -97,8 +98,6 @@ public class Tetris extends JFrame {
 
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         SwingUtilities.invokeLater(this::start);
-
-        //this.backColor = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
         this.backColor = Color.BLACK;
     }
 
@@ -112,18 +111,15 @@ public class Tetris extends JFrame {
         }
 
         renderySpot.setVisible(true);
-
         // don't allow AWT to paint the canvas since we are
         this.renderySpot.setIgnoreRepaint(true);
         // enable double buffering (the JFrame has to be
         // visible before this can be done)
         this.renderySpot.createBufferStrategy(2);
         this.renderySpot.requestFocus();
-
-        // I am a pretty pretty princess.  Pleas someone write some code
-        // Please. Thank you.
         this.renderySpot.addKeyListener(keyInput);
         this.renderySpot.addMouseListener(mouseInput);
+
         TetrisSettings.setCanvas(this.renderySpot);
 
         gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(0, 0, TetrisSettings.DIM.width/2, TetrisSettings.DIM.height);
@@ -133,6 +129,11 @@ public class Tetris extends JFrame {
         final Thread gameThread = new Thread(this::runProgram);
         gameThread.setDaemon(true);
         gameThread.start();
+
+        backColor = Color.black;
+
+        // I am a pretty pretty princess.  Pleas someone write some code
+        // Please. Thank you.
     }
 
     private void runProgram(){
@@ -177,9 +178,7 @@ public class Tetris extends JFrame {
                 gameState = GameStates.TETRAS;
                 break;
             }
-//            break;
         }
-//        gameState = GameStates.TETRAS;
     }
 
     private void gameLoop() {
@@ -197,6 +196,7 @@ public class Tetris extends JFrame {
                 }
             }
             endgameText.update(10, "You Lose");
+            backColor = Color.DARK_GRAY;
             renderGame();
         }
     }
@@ -204,12 +204,12 @@ public class Tetris extends JFrame {
     private void updateMenu(){
         menu.update(10);
     }
-   //!muy bien!
+
+    //!muy bien!
     private void renderMenu(){
         final Graphics2D g = (Graphics2D) renderySpot.getBufferStrategy().getDrawGraphics();
         g.setColor(backColor);
         g.drawImage(bimg, 0, 0, TetrisSettings.DIM.width, TetrisSettings.DIM.height, null, null);
-//        g.fillRect(0,0, TetrisSettings.DIM.width, TetrisSettings.DIM.height);
 
         menu.render(g);
 
@@ -217,34 +217,18 @@ public class Tetris extends JFrame {
     }
 
     private void updateGameState() {
-//        brian.update(10, keyInput.getInput());
         gameBoard.update(10);
-
-//        for(SpinnyText madlad : theBoyz){
-//            madlad.update(10, keyInput.getInput());
-//        }
     }
 
     private void renderGame() {
         final Graphics2D g = (Graphics2D) renderySpot.getBufferStrategy().getDrawGraphics();
         g.setColor(backColor);
-        //g.drawImage(bimg, 0, 0, dim.width, dim.height, null, null);
         g.fillRect(0,0, TetrisSettings.DIM.width, TetrisSettings.DIM.height);
 
         g.setColor(new Color((int)(Math.random()*128) + 128,(int)(Math.random()*128) + 128,(int)(Math.random()*128) + 128));
         gameBoard.render(g);
 
         endgameText.render(g);
-
-//        brian.render(g);
-//        jim.render(g);
-//        phil.render(g);
-//        gregory.render(g);
-//        roderick.render(g);
-
-//        for(SpinnyText madlad : theBoyz){
-//            madlad.render(g);
-//        }
 
         renderySpot.getBufferStrategy().show();
     }
@@ -258,5 +242,4 @@ public class Tetris extends JFrame {
             ex.printStackTrace();
         }
     }
-    //endregion
 }

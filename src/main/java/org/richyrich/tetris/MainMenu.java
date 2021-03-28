@@ -16,6 +16,8 @@ public class MainMenu implements ActionListener{
 
         startButton = new JButton("Start", buttonBg);
         startButton.setHorizontalTextPosition(SwingConstants.CENTER);
+        startButton.setForeground(Color.yellow);
+        startButton.setFont(new Font("Comic Sans MS", (Font.BOLD), 16));
 
         startButton.setBounds(150,200,300,150);
         startButton.setActionCommand("Start");

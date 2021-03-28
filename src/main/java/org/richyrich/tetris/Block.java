@@ -8,7 +8,7 @@ import java.awt.*;
 public class Block implements GameObject{
     int x;
     int y;
-//    int squareLength;
+
     Color color;
 
     public Block(Color color){
