@@ -196,7 +196,6 @@ public class Tetris extends JFrame {
                 }
             }
             endgameText.update(10, "You Lose");
-            backColor = Color.DARK_GRAY;
             renderGame();
 
 
@@ -212,8 +211,6 @@ public class Tetris extends JFrame {
         final Graphics2D g = (Graphics2D) renderySpot.getBufferStrategy().getDrawGraphics();
         g.setColor(backColor);
         g.drawImage(bimg, 0, 0, TetrisSettings.DIM.width, TetrisSettings.DIM.height, null, null);
-
-        menu.render(g);
 
         renderySpot.getBufferStrategy().show();
     }
