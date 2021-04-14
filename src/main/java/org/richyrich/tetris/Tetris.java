@@ -182,7 +182,7 @@ public class Tetris extends JFrame {
     }
 
     private void gameLoop() {
-        while(true) {
+        while(!false) {
             while (gameBoard.isGameRunning()) {
                 long startTime = System.currentTimeMillis();
 
