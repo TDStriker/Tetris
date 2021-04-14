@@ -49,7 +49,7 @@ public class Tetris extends JFrame {
     final MouseClickListener mouseInput = new MouseClickListener();
 
 
-    final MainMenu menu = new MainMenu(this);
+    MainMenu menu = new MainMenu(this);
 
 
     final SpinnyText brian = new SpinnyText(TetrisSettings.DIM.height / 2, TetrisSettings.DIM.width / 2, 5, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
@@ -122,7 +122,7 @@ public class Tetris extends JFrame {
 
         TetrisSettings.setCanvas(this.renderySpot);
 
-        gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(0, 0, TetrisSettings.DIM.width/2, TetrisSettings.DIM.height);
+        gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(0, 0, TetrisSettings.DIM.width/2, TetrisSettings.DIM.height, this);
 
         gameState = GameStates.MAIN_MENU;
 
@@ -198,6 +198,8 @@ public class Tetris extends JFrame {
             endgameText.update(10, "You Lose");
             backColor = Color.DARK_GRAY;
             renderGame();
+
+
         }
     }
 

@@ -3,6 +3,7 @@ package org.richyrich.tetris;
 import org.richyrich.tetris.utilities.ResettableKeyHandler;
 import org.richyrich.tetris.utilities.TetrisSettings;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
@@ -27,6 +28,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
     private Block[][] gameBoard = new Block[Tetris.BOARD_HEIGHT][Tetris.BOARD_WIDTH];
     private TetrisPiece currentPiece;
     CrystalCube fortuneTeller;
+    GameHUD gameStats;
 
     private ResettableKeyHandler leftListener;
     private ResettableKeyHandler rightListener;
@@ -40,7 +42,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
     private int timeSinceGravity;
     private int gravityRefreshRate;
 
-    public ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(int x, int y, int maxBoardWidth, int maxBoardHeight){
+    public ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(int x, int y, int maxBoardWidth, int maxBoardHeight, JFrame frame){
         this.gameRunning = true;
         this.maxBoardWidth = maxBoardWidth;
         this.maxBoardHeight = maxBoardHeight;
@@ -51,6 +53,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         this.heightOffset = (maxBoardHeight - actualBoardHeight)/2;
 
         this.fortuneTeller = new CrystalCube(TetrisSettings.DIM.width/2, TetrisSettings.DIM.height - TetrisSettings.SQUARE_LENGTH*12, TetrisSettings.DIM.width/2, TetrisSettings.SQUARE_LENGTH*12);
+        this.gameStats = new GameHUD(TetrisSettings.DIM.width/2,0, frame);
 
         this.leftListener = new ResettableKeyHandler(TetrisSettings.LEFT_KEY);
         this.rightListener = new ResettableKeyHandler(TetrisSettings.RIGHT_KEY);
@@ -92,6 +95,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
                     if(gravityRefreshRate > 250){
                         gravityRefreshRate -= 10;
                     }
+                    gameStats.incrementScore(100);
                 }
             }
         }
@@ -145,6 +149,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
 
         currentPiece.update(timePassed);
         fortuneTeller.update(timePassed);
+        gameStats.update(timePassed);
     }
 
     @Override
@@ -170,5 +175,6 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         g.setTransform(old);
 
         fortuneTeller.render(g);
+        gameStats.render(g);
     }
 }
