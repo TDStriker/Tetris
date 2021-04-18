@@ -37,12 +37,15 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
     private ResettableKeyHandler clockwiseListener;
     private ResettableKeyHandler counterClockwiseListener;
 
+    //cabbage = landed, salami = score for reference, wonderful names by Jagger
+
+
 
     /** The time in milliseconds that has passed since the last time we took action based on gravity */
     private int timeSinceGravity;
     private int gravityRefreshRate;
 
-    public ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(int x, int y, int maxBoardWidth, int maxBoardHeight, JFrame frame){
+    public ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(int x, int y, int maxBoardWidth, int maxBoardHeight, GameHUD gameStats){
         this.gameRunning = true;
         this.maxBoardWidth = maxBoardWidth;
         this.maxBoardHeight = maxBoardHeight;
@@ -53,7 +56,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         this.heightOffset = (maxBoardHeight - actualBoardHeight)/2;
 
         this.fortuneTeller = new CrystalCube(TetrisSettings.DIM.width/2, TetrisSettings.DIM.height - TetrisSettings.SQUARE_LENGTH*12, TetrisSettings.DIM.width/2, TetrisSettings.SQUARE_LENGTH*12);
-        this.gameStats = new GameHUD(TetrisSettings.DIM.width/2,0, frame);
+        this.gameStats = gameStats;
 
         this.leftListener = new ResettableKeyHandler(TetrisSettings.LEFT_KEY);
         this.rightListener = new ResettableKeyHandler(TetrisSettings.RIGHT_KEY);
@@ -81,6 +84,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
     }
 
     public void clearRows(){
+        int rows = 0;
         for(int row = 0; row < gameBoard.length; row++){
             for(int col = 0; col < gameBoard[0].length; col++){
                 if(gameBoard[row][col] == null){
@@ -95,7 +99,8 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
                     if(gravityRefreshRate > 250){
                         gravityRefreshRate -= 10;
                     }
-                    gameStats.incrementScore(100);
+                    rows ++;
+                    gameStats.incrementScore(100 + ((rows == 4)? 100 : 0));
                 }
             }
         }
@@ -103,6 +108,10 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
 
     public boolean isGameRunning() {
         return gameRunning;
+    }
+
+    public boolean goHome(){
+        return gameStats.isHomie();
     }
 
     @Override
@@ -137,7 +146,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
                     gameBoard[block.getY()][block.getX()] = block;
                 }
                 currentPiece = fortuneTeller.getUpcomingPiece();
-                currentPiece.setPosition(5, 0);
+                currentPiece.setPosition(4, 0);
                 if(!currentPiece.positionValid(gameBoard)){
                     gameRunning = false;
                 }
