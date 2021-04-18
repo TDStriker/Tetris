@@ -51,6 +51,8 @@ public class Tetris extends JFrame {
 
     MainMenu menu = new MainMenu(this);
 
+    GameHUD gameStats;
+
 
     final SpinnyText brian = new SpinnyText(TetrisSettings.DIM.height / 2, TetrisSettings.DIM.width / 2, 5, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
         new Font("ROG Fonts", (Font.ITALIC), 20), TetrisSettings.DIM);
@@ -92,6 +94,8 @@ public class Tetris extends JFrame {
         renderySpot.setMaximumSize(TetrisSettings.DIM);
         renderySpot.setPreferredSize(TetrisSettings.DIM);
 
+        gameStats = new GameHUD(TetrisSettings.DIM.width/2,0,this);
+
         this.add(renderySpot);
         this.setResizable(false);
         this.pack();
@@ -122,7 +126,7 @@ public class Tetris extends JFrame {
 
         TetrisSettings.setCanvas(this.renderySpot);
 
-        gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(0, 0, TetrisSettings.DIM.width/2, TetrisSettings.DIM.height, this);
+        gameBoard = new ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen(0, 0, TetrisSettings.DIM.width/2, TetrisSettings.DIM.height, gameStats);
 
         gameState = GameStates.MAIN_MENU;
 
@@ -183,7 +187,7 @@ public class Tetris extends JFrame {
 
     private void gameLoop() {
         while(!false) {
-            while (gameBoard.isGameRunning()) {
+            if(gameBoard.isGameRunning()) {
                 long startTime = System.currentTimeMillis();
 
                 updateGameState();
@@ -194,11 +198,14 @@ public class Tetris extends JFrame {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+            } else {
+                endgameText.update(10, "You Lose");
+                renderGame();
             }
-            endgameText.update(10, "You Lose");
-            renderGame();
-
-
+            if(gameBoard.goHome()){
+                gameState = GameStates.MAIN_MENU;
+                break;
+            }
         }
     }
 
