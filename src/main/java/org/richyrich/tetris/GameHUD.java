@@ -38,22 +38,24 @@ public class GameHUD implements GameObject, ActionListener {
         restartButton.setForeground(Color.white);
         restartButton.setFont(new Font("Comic Sans MS", (Font.BOLD), 16));
         //TODO: Get actual x & y vals
-        restartButton.setBounds(100, 100, 100, 100);
+        restartButton.setBounds(460, 150, 120, 80);
         restartButton.setActionCommand("Restart");
         restartButton.setBackground(Color.yellow);
         restartButton.setFocusable(false);
         restartButton.addActionListener(this);
+        restartButton.setVisible(false);
         frame.add(restartButton);
 
         homeButton.setHorizontalTextPosition(SwingConstants.CENTER);
         homeButton.setForeground(Color.white);
         homeButton.setFont(new Font("Comic Sans MS", (Font.BOLD), 16));
         //TODO: Get actual x & y val
-        homeButton.setBounds(150, 200, 100, 100);
+        homeButton.setBounds(320, 150, 120, 80);
         homeButton.setActionCommand("Home");
         homeButton.setBackground(Color.cyan);
         homeButton.setFocusable(false);
         homeButton.addActionListener(this);
+        homeButton.setVisible(false);
         frame.add(homeButton);
     }
 
@@ -63,7 +65,8 @@ public class GameHUD implements GameObject, ActionListener {
 
     @Override
     public void update(int timePassed) {
-
+        restartButton.setVisible(true);
+        homeButton.setVisible(true);
     }
 
     @Override
@@ -80,11 +83,15 @@ public class GameHUD implements GameObject, ActionListener {
     }
 
     public boolean isRestarted(){
-        return isRestarted;
+        boolean restart = isRestarted;
+        isRestarted = false;
+        return restart;
     }
 
     public boolean isHomie(){
-        return isHomie;
+        boolean home = isHomie;
+        isHomie = false;
+        return home;
     }
 
     @Override
