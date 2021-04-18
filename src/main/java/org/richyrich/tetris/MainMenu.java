@@ -32,10 +32,14 @@ public class MainMenu implements ActionListener{
     }
 
     public boolean isGameStarted(){
-        return isGameStarted;
+        boolean start = isGameStarted;
+        isGameStarted = false;
+        return start;
     }
 
-    public void update(int timePassed) {}
+    public void update(int timePassed) {
+        startButton.setVisible(true);
+    }
 
     public void render(Graphics2D g) {}
 
