@@ -66,7 +66,7 @@ public class Tetris extends JFrame {
         new Font("Jazz LET", (Font.ITALIC), 20), TetrisSettings.DIM);
 
     final SpinnyText endgameText = new SpinnyText(TetrisSettings.DIM.height / 2, TetrisSettings.DIM.width / 2, 0, 0, new Color((int) (Math.random() * 128), (int) (Math.random() * 128), (int) (Math.random() * 128)),
-        new Font("ROG Fonts", (Font.ITALIC), 30), TetrisSettings.DIM);
+        new Font("Comic Sans MS", (Font.BOLD), 50), TetrisSettings.DIM);
 
     final SpinnyText[] theBoyz = {brian, gregory, jim, phil, roderick};
 
@@ -141,6 +141,7 @@ public class Tetris extends JFrame {
     }
 
     private void runProgram(){
+        gameBoard.start();
         while(true){
             switch (gameState){
                 case MAIN_MENU:
@@ -148,7 +149,6 @@ public class Tetris extends JFrame {
                     break;
 
                 case TETRAS:
-                    gameBoard.start();
                     gameLoop();
                     break;
 
@@ -199,12 +199,21 @@ public class Tetris extends JFrame {
                     e.printStackTrace();
                 }
             } else {
-                endgameText.update(10, "You Lose");
+                endgameText.setText("You Lose!");
+                endgameText.update(10);
                 renderGame();
             }
             if(gameBoard.goHome()){
+                if(!gameBoard.isGameRunning()){
+                    endgameText.setText("");
+                    gameBoard.restart();
+                }
                 gameState = GameStates.MAIN_MENU;
                 break;
+            }
+            if(gameBoard.goGoGadgetRestart()){
+                endgameText.setText("");
+                gameBoard.restart();
             }
         }
     }
