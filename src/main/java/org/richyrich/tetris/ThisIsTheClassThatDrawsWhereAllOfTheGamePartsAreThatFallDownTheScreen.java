@@ -14,7 +14,7 @@ import java.awt.geom.AffineTransform;
 public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScreen implements GameObject {
     /**
         T etrathingamagoddius
-        H
+        H elp
      */
 
 
@@ -83,6 +83,12 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         gravityRefreshRate = 1000;
     }
 
+    public void restart(){
+    clearBoard();
+    gameStats.murderScore();
+    start();
+    }
+
     public void clearRows(){
         int rows = 0;
         for(int row = 0; row < gameBoard.length; row++){
@@ -106,12 +112,25 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         }
     }
 
+    //TODO: KIll ME PLeASE I BEG
+    public void clearBoard() {
+        for (int row = 0; row < gameBoard.length; row++) {
+            for (int col = 0; col < gameBoard[0].length; col++) {
+                gameBoard[row][col] = null;
+            }
+        }
+    }
+
     public boolean isGameRunning() {
         return gameRunning;
     }
 
     public boolean goHome(){
         return gameStats.isHomie();
+    }
+
+    public boolean goGoGadgetRestart(){
+        return gameStats.isRestarted();
     }
 
     @Override
@@ -137,6 +156,11 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         if(counterClockwiseListener.checkAndReset()){
             currentPiece.rotateCounterClockwise(gameBoard);
             /** System.out.println("ChaCha Real Smooth!"); **/
+        }
+
+        //TODO: GOD
+        if(upListener.checkAndReset()){
+            clearBoard();
         }
 
         if(timeSinceGravity >= gravityRefreshRate){
