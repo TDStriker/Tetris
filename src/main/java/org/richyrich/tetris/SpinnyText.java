@@ -34,13 +34,16 @@ public class SpinnyText {
         this.velocityY = 150;
     }
 
+    public void setText(String str){
+        this.str = str;
+    }
+
     public void setColor(Color color){
         this.color = color;
     }
 
-    public void update(int elapsedTimeMillis, String str) {
+    public void update(int elapsedTimeMillis) {
         theta += (2 * Math.PI * rotSpeed) * (elapsedTimeMillis / 1000f);
-        this.str = str;
 
         setColor(new Color((int)(Math.random()*128) + 128,(int)(Math.random()*128) + 128,(int)(Math.random()*128) + 128));
         // You aren't declaring a new parameter,  you need to pass it a r
