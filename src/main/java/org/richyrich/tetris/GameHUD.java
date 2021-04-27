@@ -40,7 +40,7 @@ public class GameHUD implements GameObject, ActionListener {
         //TODO: Get actual x & y vals
         restartButton.setBounds(460, 150, 120, 80);
         restartButton.setActionCommand("Restart");
-        restartButton.setBackground(Color.yellow);
+        restartButton.setBackground(Color.red);
         restartButton.setFocusable(false);
         restartButton.addActionListener(this);
         restartButton.setVisible(false);
@@ -52,7 +52,7 @@ public class GameHUD implements GameObject, ActionListener {
         //TODO: Get actual x & y val
         homeButton.setBounds(320, 150, 120, 80);
         homeButton.setActionCommand("Home");
-        homeButton.setBackground(Color.cyan);
+        homeButton.setBackground(Color.red);
         homeButton.setFocusable(false);
         homeButton.addActionListener(this);
         homeButton.setVisible(false);
@@ -61,6 +61,10 @@ public class GameHUD implements GameObject, ActionListener {
 
     public void incrementScore(int val){
         score += val;
+    }
+
+    public void murderScore(){
+        score = 0;
     }
 
     @Override
@@ -99,11 +103,13 @@ public class GameHUD implements GameObject, ActionListener {
         if("Restart".equals(e.getActionCommand())) {
             System.out.println("RESTARTED");
             isRestarted = true;
+            homeButton.setVisible(false);
             restartButton.setVisible(false);
         }else if("Home".equals(e.getActionCommand())){
             System.out.println("HOMIE-O");
             isHomie = true;
             homeButton.setVisible(false);
+            restartButton.setVisible(false);
         }
     }
 //IMPORTANT LORE: BIG PURPLE L - Why pieces join together when the game ends
