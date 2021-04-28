@@ -1,0 +1,29 @@
+public class CustomImage{
+  Image image;
+  Color color;
+  
+  public CustomImage(Image image, Color color){
+    this.image = image;
+    this.color = color;
+    
+    colorImage();
+  }
+  
+  public void setColor(Color color){
+    this.color = color;
+    
+    colorImage();
+  }
+  
+  public void colorImage(){
+    for (int col = 0; col < width; col++) {
+        for (int row = 0; row < height; row++) {
+            Color c = image.get(col, row);
+            int r = c.getRed();
+            int g = c.getGreen();
+            int b = c.getBlue();
+            image.set(col, row, new Color((r+color.getRed())/2,(g+color.getGreen())/2,(b+color.getBlue())/2);
+        }
+    }
+  }
+}
