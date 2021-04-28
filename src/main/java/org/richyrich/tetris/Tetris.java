@@ -48,6 +48,7 @@ public class Tetris extends JFrame {
     final KeyboardListener keyInput = new KeyboardListener();
     final MouseClickListener mouseInput = new MouseClickListener();
 
+    private String playerName;
 
     MainMenu menu = new MainMenu(this);
 
@@ -144,6 +145,9 @@ public class Tetris extends JFrame {
         gameBoard.start();
         while(true){
             switch (gameState){
+                case NAME_INPUT:
+                    //Stuff
+                    break;
                 case MAIN_MENU:
                     runMenu();
                     break;
@@ -246,6 +250,11 @@ public class Tetris extends JFrame {
         endgameText.render(g);
 
         renderySpot.getBufferStrategy().show();
+    }
+
+    //TODO: HO HO HO, soy Papa Noel. Also you may need to finish the method, implement it.
+    private void PersonNameHOHOHO(){
+        playerName = keyInput.getInput();
     }
 
     //region SpaceX

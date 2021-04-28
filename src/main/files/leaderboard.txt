@@ -1,10 +1,10 @@
-1. Anthony: 1000000000
-2. Anthony: 999999
-3. Rich: 999998
-4. Catalin: 100000
-5. Sebastain: 4500
-6. Rosie: 1800
-7. Cookie: 1500
-8. Andy: 1000
-9. Jensen: 1
-10. Jagster: -4000000
+Anthony: 1000000000
+Anthony: 999999
+Rich: 999998
+Catalin: 100000
+Sebastain: 4500
+Rosie: 1800
+Cookie: 1500
+Andy: 1000
+Jensen: 1
+Jagster: -4000000

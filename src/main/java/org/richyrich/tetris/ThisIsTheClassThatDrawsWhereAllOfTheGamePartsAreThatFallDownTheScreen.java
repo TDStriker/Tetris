@@ -78,7 +78,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         this.gameRunning = true;
 
         Block[] blocks = new Block[]{new Block(Color.red, 0, 0), new Block(Color.red, 1, 0), new Block(Color.red, 0, 1), new Block(Color.red, 2, 0)};
-        this.currentPiece = new TetrisPiece(blocks, 5, 0);
+        this.currentPiece = new TetrisPiece(blocks, 4, 0);
 
         gravityRefreshRate = 1000;
     }
