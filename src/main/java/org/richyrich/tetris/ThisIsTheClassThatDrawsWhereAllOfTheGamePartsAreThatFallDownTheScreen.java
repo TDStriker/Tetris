@@ -158,7 +158,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
             /** System.out.println("ChaCha Real Smooth!"); **/
         }
 
-        //TODO: GOD
+        //GOD Mode
         if(upListener.checkAndReset()){
             clearBoard();
         }
