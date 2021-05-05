@@ -1,11 +1,16 @@
 package org.richyrich.tetris.utilities;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class TetrisSettings {
     public static int SQUARE_LENGTH = 25;
+
+    public static String blockImagePath = "src/main/res/block.png";
 
     public static Dimension DIM = new Dimension(600, 600);
 
@@ -28,3 +33,4 @@ public class TetrisSettings {
         CANVAS.addKeyListener(handler);
     }
 }
+
