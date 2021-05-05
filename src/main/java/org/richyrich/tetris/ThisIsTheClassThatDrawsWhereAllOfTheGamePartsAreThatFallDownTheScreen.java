@@ -1,11 +1,14 @@
 package org.richyrich.tetris;
 
+import org.richyrich.tetris.utilities.CustomImage;
 import org.richyrich.tetris.utilities.ResettableKeyHandler;
 import org.richyrich.tetris.utilities.TetrisSettings;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.io.File;
 
 /**
  * Class that updates and displays the game field
@@ -77,8 +80,13 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
     public void start(){
         this.gameRunning = true;
 
-        Block[] blocks = new Block[]{new Block(Color.red, 0, 0), new Block(Color.red, 1, 0), new Block(Color.red, 0, 1), new Block(Color.red, 2, 0)};
-        this.currentPiece = new TetrisPiece(blocks, 4, 0);
+        try {
+            Block[] blocks = new Block[]{new Block(Color.red, new CustomImage(ImageIO.read(new File(TetrisSettings.blockImagePath))), 0, 0), new Block(Color.red, new CustomImage(ImageIO.read(new File(TetrisSettings.blockImagePath))), 1, 0), new Block(Color.red, new CustomImage(ImageIO.read(new File(TetrisSettings.blockImagePath))), 0, 1), new Block(Color.red, new CustomImage(ImageIO.read(new File(TetrisSettings.blockImagePath))), 2, 0)};
+            this.currentPiece = new TetrisPiece(blocks, 4, 0);
+        }catch(Exception e){
+            this.currentPiece = PieceFactory.DEFAULT.generatePiece();
+        }
+
 
         gravityRefreshRate = 1000;
     }
@@ -192,7 +200,11 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         g.translate(border*2, heightOffset);
         g.setStroke(new BasicStroke (border));
         g.drawRect(x, y, ((TetrisSettings.SQUARE_LENGTH*10) + 2 * border), ((TetrisSettings.SQUARE_LENGTH*20)+ 2 * border));
-        g.translate(border, border);
+        g.translate(border,border);
+
+        currentPiece.render(g);
+
+        g.translate(-border, -TetrisSettings.SQUARE_LENGTH/2-border/2);
 
         for(int i = 0; i < gameBoard.length; i++){
             for(int j = 0; j < gameBoard[0].length; j++){
@@ -202,8 +214,6 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
                 }
             }
         }
-
-        currentPiece.render(g);
 
         g.setTransform(old);
 
