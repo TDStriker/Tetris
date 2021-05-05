@@ -21,6 +21,7 @@
 
 package org.richyrich.tetris;
 
+import org.richyrich.tetris.utilities.CustomImage;
 import org.richyrich.tetris.utilities.KeyboardListener;
 import org.richyrich.tetris.utilities.MouseClickListener;
 import org.richyrich.tetris.utilities.TetrisSettings;
@@ -39,8 +40,8 @@ public class Tetris extends JFrame {
     final static int BOARD_WIDTH = 10;
     final static int BOARD_HEIGHT = 20;
 
-    public static BufferedImage bimg;
-    public static BufferedImage baton;
+    public static CustomImage jagger;
+    public static CustomImage baton;
 
     final Canvas renderySpot;
 
@@ -78,7 +79,10 @@ public class Tetris extends JFrame {
 
     private Tetris() {
         try {
-            bimg = ImageIO.read(new File("src/main/res/jagger.png"));
+            jagger = new CustomImage(ImageIO.read(new File("src/main/res/jagger.png")));
+            jagger.negate();
+//            jagger.colorImage(Color.cyan);
+            jagger.keepOnly(Color.red);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -230,7 +234,7 @@ public class Tetris extends JFrame {
     private void renderMenu(){
         final Graphics2D g = (Graphics2D) renderySpot.getBufferStrategy().getDrawGraphics();
         g.setColor(backColor);
-        g.drawImage(bimg, 0, 0, TetrisSettings.DIM.width, TetrisSettings.DIM.height, null, null);
+        g.drawImage(jagger.getImage(), 0, 0, TetrisSettings.DIM.width, TetrisSettings.DIM.height, null, null);
 
         renderySpot.getBufferStrategy().show();
     }
@@ -267,3 +271,4 @@ public class Tetris extends JFrame {
         }
     }
 }
+
