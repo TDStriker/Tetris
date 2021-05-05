@@ -168,6 +168,7 @@ public class TetrisPiece implements GameObject {
         if(colorChanging){
             Color color = new Color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
             for(Block block : blocks){
+                block.resetImage();
                 block.setColor(color);
             }
         }
