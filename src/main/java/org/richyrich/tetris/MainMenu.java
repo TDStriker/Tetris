@@ -1,20 +1,28 @@
 package org.richyrich.tetris;
 
+import org.richyrich.tetris.utilities.CustomImage;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class MainMenu implements ActionListener{
     JButton startButton;
-    ImageIcon buttonBg;
+    CustomImage buttonBg;
 
     private boolean isGameStarted;
 
     public MainMenu(JFrame frame) {
-        buttonBg = new ImageIcon("src/main/res/baton.png");
+        try{
+            buttonBg = new CustomImage(ImageIO.read(new File("src/main/res/baton.png")));
+            buttonBg.colorImage(new Color(25,25,25));
+        }catch(Exception e){
+
+        }
         isGameStarted = false;
 
-        startButton = new JButton("Start", buttonBg);
+        startButton = new JButton("Start", new ImageIcon(buttonBg.getImage()));
 
         startButton.setHorizontalTextPosition(SwingConstants.CENTER);
         startButton.setForeground(Color.yellow);
@@ -54,3 +62,4 @@ public class MainMenu implements ActionListener{
         }
     }
 }
+
