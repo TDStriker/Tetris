@@ -1,5 +1,7 @@
 package org.richyrich.tetris.utilities;
 
+import org.richyrich.tetris.Sound;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -11,6 +13,8 @@ public class TetrisSettings {
     public static int SQUARE_LENGTH = 25;
 
     public static String blockImagePath = "src/main/res/block.png";
+
+    public static Sound backgroundTheme = new Sound("src/main/java/audio/TetrasTheme.wav");
 
     public static Dimension DIM = new Dimension(600, 600);
 

@@ -84,7 +84,9 @@ public class Block implements GameObject{
         if(image != null) {
             AffineTransform old = g.getTransform();
             g.translate(x*TetrisSettings.SQUARE_LENGTH, y*TetrisSettings.SQUARE_LENGTH);
-            g.drawImage(image.getImage(), x, y, TetrisSettings.SQUARE_LENGTH, TetrisSettings.SQUARE_LENGTH, null, null);
+
+            //TODO: If we want the gap between the blocks you can subtract 1 from the image width and height.
+            g.drawImage(image.getImage(), 0, 0, TetrisSettings.SQUARE_LENGTH, TetrisSettings.SQUARE_LENGTH, null, null);
             g.setTransform(old);
         }else {
             g.setColor(color);

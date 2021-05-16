@@ -146,7 +146,6 @@ public class Tetris extends JFrame {
     }
 
     private void runProgram(){
-        gameBoard.start();
         while(true){
             switch (gameState){
                 case NAME_INPUT:
@@ -194,6 +193,7 @@ public class Tetris extends JFrame {
     }
 
     private void gameLoop() {
+        gameBoard.start();
         while(!false) {
             if(gameBoard.isGameRunning()) {
                 long startTime = System.currentTimeMillis();

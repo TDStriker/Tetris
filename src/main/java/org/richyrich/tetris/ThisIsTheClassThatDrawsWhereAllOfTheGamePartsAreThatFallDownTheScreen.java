@@ -86,15 +86,17 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
         }catch(Exception e){
             this.currentPiece = PieceFactory.DEFAULT.generatePiece();
         }
-
+        TetrisSettings.backgroundTheme.loopSound();
 
         gravityRefreshRate = 1000;
     }
 
     public void restart(){
-    clearBoard();
-    gameStats.murderScore();
-    start();
+        clearBoard();
+        gameStats.murderScore();
+        TetrisSettings.backgroundTheme.stopSound();
+        TetrisSettings.backgroundTheme.resetSound();
+        start();
     }
 
     public void clearRows(){
@@ -180,6 +182,8 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
                 currentPiece = fortuneTeller.getUpcomingPiece();
                 currentPiece.setPosition(4, 0);
                 if(!currentPiece.positionValid(gameBoard)){
+                    TetrisSettings.backgroundTheme.stopSound();
+                    TetrisSettings.backgroundTheme.resetSound();
                     gameRunning = false;
                 }
             }
@@ -204,7 +208,7 @@ public class ThisIsTheClassThatDrawsWhereAllOfTheGamePartsAreThatFallDownTheScre
 
         currentPiece.render(g);
 
-        g.translate(-border, -TetrisSettings.SQUARE_LENGTH/2-border/2);
+//        g.translate(-border, -TetrisSettings.SQUARE_LENGTH/2-border/2);
 
         for(int i = 0; i < gameBoard.length; i++){
             for(int j = 0; j < gameBoard[0].length; j++){
