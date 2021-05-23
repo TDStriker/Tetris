@@ -29,7 +29,7 @@ public class MainMenu implements ActionListener{
         startButton.setForeground(Color.yellow);
         startButton.setFont(new Font("Comic Sans MS", (Font.BOLD), 16));
 
-        startButton.setBounds(150,200,300,150);
+        startButton.setBounds(150,300,300,150);
         startButton.setActionCommand("Start");
 
         startButton.setBackground(Color.red);
