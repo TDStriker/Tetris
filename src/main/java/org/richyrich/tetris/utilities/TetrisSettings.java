@@ -14,7 +14,7 @@ public class TetrisSettings {
 
     public static String blockImagePath = "src/main/res/block.png";
 
-    public static Sound backgroundTheme = new Sound("src/main/java/audio/TetrasTheme.wav");
+    public static Sound backgroundTheme = new Sound("src/main/audio/Tetris.wav");
 
     public static Dimension DIM = new Dimension(600, 600);
 

@@ -79,10 +79,10 @@ public class Tetris extends JFrame {
 
     private Tetris() {
         try {
-            jagger = new CustomImage(ImageIO.read(new File("src/main/res/jagger.png")));
-            jagger.negate();
+            jagger = new CustomImage(ImageIO.read(new File("src/main/res/bg1.png")));
+//            jagger.negate();
 //            jagger.colorImage(Color.cyan);
-            jagger.keepOnly(Color.red);
+//            jagger.keepOnly(Color.red);
         } catch (IOException e) {
             e.printStackTrace();
         }

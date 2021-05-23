@@ -166,7 +166,7 @@ public class TetrisPiece implements GameObject {
     @Override
     public void update(int timePassed) {
         if(colorChanging){
-            Color color = new Color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
+            Color color = new Color((int)((Math.random()*206)+50),(int)((Math.random()*206)+50),(int)((Math.random()*206)+50));
             for(Block block : blocks){
                 block.resetImage();
                 block.setColor(color);
